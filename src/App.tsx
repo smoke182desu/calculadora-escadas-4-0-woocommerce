@@ -10,6 +10,12 @@ import {
   Package, Layers as LayersIcon, ShoppingCart
 } from 'lucide-react';
 import { redirectToCheckout, calculatePrice } from './woocommerce-integration';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import MyProjects from './pages/MyProjects';
+import AdminDashboard from './pages/AdminDashboard';
+import { LogOut } from 'lucide-react';
 
 const getDiamondPlateTexture = () => {
   const canvas = document.createElement('canvas');
@@ -2694,7 +2700,7 @@ const SpiralCalc = ({ onBack }: any) => {
 
 // --- Wizard / Main App ---
 
-export default function App() {
+function AppContent() {
   const [view, setView] = useState<'wizard' | 'straight' | 'landing' | 'lshape' | 'spiral'>('wizard');
 
   if (view !== 'wizard') {
@@ -2747,3 +2753,123 @@ export default function App() {
     </div>
   );
 }
+
+function App() {
+  const [view, setView] = useState<'auth-login' | 'auth-register' | 'projects' | 'admin' | 'calculator'>('auth-login');
+  const { isAuthenticated, user, logout, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-slate-50">
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center p-4 bg-blue-600 text-white rounded-2xl mb-6 shadow-lg">
+            <Calculator size={40} />
+          </div>
+          <p className="text-slate-600 font-bold">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          {view === 'auth-login' ? (
+            <Login
+              onSuccess={() => setView('projects')}
+              onToggleRegister={() => setView('auth-register')}
+            />
+          ) : (
+            <Register
+              onSuccess={() => setView('projects')}
+              onToggleLogin={() => setView('auth-login')}
+            />
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      {/* Header */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-blue-600 text-white rounded-lg">
+              <Calculator size={24} />
+            </div>
+            <h1 className="text-2xl font-black text-slate-900">Calculadora de Escadas</h1>
+          </div>
+
+          <nav className="flex items-center gap-6">
+            <button
+              onClick={() => setView('projects')}
+              className={`font-bold transition-colors ${
+                view === 'projects'
+                  ? 'text-blue-600'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              Meus Projetos
+            </button>
+            {user?.isAdmin && (
+              <button
+                onClick={() => setView('admin')}
+                className={`font-bold transition-colors ${
+                  view === 'admin'
+                    ? 'text-blue-600'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Admin
+              </button>
+            )}
+            <button
+              onClick={() => setView('calculator')}
+              className={`font-bold transition-colors ${
+                view === 'calculator'
+                  ? 'text-blue-600'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              Calculadora
+            </button>
+            <div className="flex items-center gap-3 pl-6 border-l border-slate-200">
+              <span className="text-sm text-slate-600">{user?.firstName}</span>
+              <button
+                onClick={logout}
+                className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                title="Sair"
+              >
+                <LogOut className="w-5 h-5 text-slate-600" />
+              </button>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      {/* Content */}
+      <main>
+        {view === 'projects' && (
+          <MyProjects
+            onSelectProject={() => setView('calculator')}
+            onNewProject={() => setView('calculator')}
+          />
+        )}
+        {view === 'admin' && <AdminDashboard />}
+        {view === 'calculator' && <AppContent />}
+      </main>
+    </div>
+  );
+}
+
+// Wrap App with AuthProvider
+const AppWithProvider = () => (
+  <AuthProvider>
+    <App />
+  </AuthProvider>
+);
+
+export default AppWithProvider;
