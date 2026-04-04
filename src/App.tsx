@@ -7,8 +7,9 @@ import {
   Calculator, Info, Layers, ArrowUpDown, ArrowRightLeft, CheckCircle2, 
   AlertTriangle, XCircle, Printer, Minus, Plus, Box as BoxIcon, Image as ImageIcon, 
   ArrowLeft, TrendingUp, SplitSquareHorizontal, CornerUpRight, RotateCcw, Download,
-  Package, Layers as LayersIcon
+  Package, Layers as LayersIcon, ShoppingCart
 } from 'lucide-react';
+import { redirectToCheckout, calculatePrice } from './woocommerce-integration';
 
 const getDiamondPlateTexture = () => {
   const canvas = document.createElement('canvas');
@@ -1094,6 +1095,34 @@ const SalesKit = ({ type, config, w, landingL, landingW }: any) => {
             className="flex items-center gap-2 px-6 py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-400 transition-all shadow-lg active:scale-95 border border-blue-400"
           >
             <Download className="w-5 h-5" /> Baixar PDF do Kit
+          </button>
+          <button 
+            onClick={() => {
+              const price = calculatePrice({
+                type: type === 'straight' ? 'reta' : type === 'landing' ? 'patamar' : type === 'lshape' ? 'l' : 'caracol',
+                height: Math.round(config.h * config.steps),
+                width: w,
+                depth: config.p,
+                stepHeight: config.h,
+                stepDepth: config.p,
+                material: 'aço carbono',
+                handrailType: 'tubo',
+              });
+              redirectToCheckout({
+                type: type === 'straight' ? 'reta' : type === 'landing' ? 'patamar' : type === 'lshape' ? 'l' : 'caracol',
+                height: Math.round(config.h * config.steps),
+                width: w,
+                depth: config.p,
+                stepHeight: config.h,
+                stepDepth: config.p,
+                material: 'aço carbono',
+                handrailType: 'tubo',
+                price,
+              });
+            }}
+            className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-400 transition-all shadow-lg active:scale-95 border border-green-400"
+          >
+            <ShoppingCart className="w-5 h-5" /> Ir para Checkout
           </button>
         </div>
       </div>
