@@ -2281,11 +2281,11 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
       const step = steps[stepIndex];
       const rotation = -(step.angle - 90) * (Math.PI / 180);
       
-      const fractions = [1/6, 1/2, 5/6];
-      
+      const fractions = isClockwise ? [1/6, 1/2, 5/6] : [5/6, 1/2, 1/6];
+
       for (const fraction of fractions) {
         const localAngle = angleStep * fraction;
-        const globalAngle = rotation + localAngle;
+        const globalAngle = rotation - localAngle;
         points.push(new THREE.Vector3(
           handrailR * Math.cos(globalAngle), 
           getHandrailY(stepIndex, localAngle), 
@@ -2296,7 +2296,7 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
 
     // End point connects exactly to the landing
     const lastStepIndex = steps.length - 1;
-    const lastLocalAngle = angleStep;
+    const lastLocalAngle = isClockwise ? angleStep : 0;
     const endY = getHandrailY(lastStepIndex, lastLocalAngle);
     points.push(new THREE.Vector3(
       handrailR * Math.cos(landingConnectionRotation), 
@@ -2304,7 +2304,7 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
       -handrailR * Math.sin(landingConnectionRotation)
     ));
 
-    return new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0);
+    return new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.1);
   }, [stair, handrailR, angleStep, getHandrailY, landingConnectionRotation]);
 
   const shape = useMemo(() => {
@@ -2400,14 +2400,14 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         const z = 40 + (i / 3) * (R - 80);
                         return (
                           <mesh key={`right-${i}`} position={[R - 40, 500, z]}>
-                            <boxGeometry args={[40, 1000, 40]} />
-                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <boxGeometry args={[16, 1000, 16]} />
+                            <meshStandardMaterial color="#334155" />
                           </mesh>
                         );
                       })}
                       <mesh position={[R - 40, 1000, R / 2]} rotation={[Math.PI / 2, 0, 0]}>
-                        <boxGeometry args={[30, R, 30]} />
-                        <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
+                        <boxGeometry args={[24, R, 24]} />
+                        <meshStandardMaterial color="#334155" />
                       </mesh>
 
                       {/* Left side (x = 40) */}
@@ -2415,14 +2415,14 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         const z = tubeRadius + 40 + (i / 3) * (R - tubeRadius - 80);
                         return (
                           <mesh key={`left-${i}`} position={[40, 500, z]}>
-                            <boxGeometry args={[40, 1000, 40]} />
-                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <boxGeometry args={[16, 1000, 16]} />
+                            <meshStandardMaterial color="#334155" />
                           </mesh>
                         );
                       })}
                       <mesh position={[40, 1000, tubeRadius + (R - tubeRadius) / 2]} rotation={[Math.PI / 2, 0, 0]}>
-                        <boxGeometry args={[30, R - tubeRadius, 30]} />
-                        <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
+                        <boxGeometry args={[24, R - tubeRadius, 24]} />
+                        <meshStandardMaterial color="#334155" />
                       </mesh>
                     </>
                   ) : (
@@ -2432,14 +2432,14 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         const x = tubeRadius + 40 + (i / 3) * (R - tubeRadius - 80);
                         return (
                           <mesh key={`right-${i}`} position={[x, 500, 40]}>
-                            <boxGeometry args={[40, 1000, 40]} />
-                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <boxGeometry args={[16, 1000, 16]} />
+                            <meshStandardMaterial color="#334155" />
                           </mesh>
                         );
                       })}
                       <mesh position={[tubeRadius + (R - tubeRadius) / 2, 1000, 40]} rotation={[0, 0, Math.PI / 2]}>
-                        <boxGeometry args={[30, R - tubeRadius, 30]} />
-                        <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
+                        <boxGeometry args={[24, R - tubeRadius, 24]} />
+                        <meshStandardMaterial color="#334155" />
                       </mesh>
 
                       {/* Left side (z = R - 40) */}
@@ -2447,14 +2447,14 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         const x = 40 + (i / 3) * (R - 80);
                         return (
                           <mesh key={`left-${i}`} position={[x, 500, R - 40]}>
-                            <boxGeometry args={[40, 1000, 40]} />
-                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <boxGeometry args={[16, 1000, 16]} />
+                            <meshStandardMaterial color="#334155" />
                           </mesh>
                         );
                       })}
                       <mesh position={[R / 2, 1000, R - 40]} rotation={[0, 0, Math.PI / 2]}>
-                        <boxGeometry args={[30, R, 30]} />
-                        <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
+                        <boxGeometry args={[24, R, 24]} />
+                        <meshStandardMaterial color="#334155" />
                       </mesh>
                     </>
                   )}
@@ -2501,10 +2501,10 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                             <mesh key={`baluster-${i}`} position={[
                               handrailR * Math.cos(localAngle),
                               balusterHeight / 2,
-                              -handrailR * Math.sin(localAngle)
+                              handrailR * Math.sin(localAngle)
                             ]}>
-                              <boxGeometry args={[40, balusterHeight, 40]} />
-                              <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                              <boxGeometry args={[16, balusterHeight, 16]} />
+                              <meshStandardMaterial color="#334155" />
                             </mesh>
                           );
                         })}
@@ -2518,16 +2518,16 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
             <group position={[0, explodeOffsets.handrail, 0]}>
               <mesh>
                 <tubeGeometry args={[handrailCurve, 128, 15, 8, false]} />
-                <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color="#334155" metalness={0.8} roughness={0.2} />
               </mesh>
               {/* End caps */}
               <mesh position={handrailCurve.points[0]}>
                 <sphereGeometry args={[15, 16, 16]} />
-                <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color="#334155" metalness={0.9} roughness={0.1} />
               </mesh>
               <mesh position={handrailCurve.points[handrailCurve.points.length - 1]}>
                 <sphereGeometry args={[15, 16, 16]} />
-                <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color="#334155" metalness={0.9} roughness={0.1} />
               </mesh>
             </group>
           )}
