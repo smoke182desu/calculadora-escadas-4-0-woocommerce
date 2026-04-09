@@ -722,7 +722,7 @@ const Stair3DVisualizer = ({ steps, h, p, w, topStepFlush, exploded, showHandrai
                           const stepTopY = (i + 1) * h;
                           const balusterHeight = handrailHeight;
                           return (
-                            <Box key={`lbal-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
+                            <Box key={`lbal-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
                               <meshStandardMaterial color="#334155" />
                               <Edges scale={1} threshold={15} color="#1e293b" />
                             </Box>
@@ -745,7 +745,7 @@ const Stair3DVisualizer = ({ steps, h, p, w, topStepFlush, exploded, showHandrai
                           const stepTopY = (i + 1) * h;
                           const balusterHeight = handrailHeight;
                           return (
-                            <Box key={`rbal-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
+                            <Box key={`rbal-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
                               <meshStandardMaterial color="#334155" />
                               <Edges scale={1} threshold={15} color="#1e293b" />
                             </Box>
@@ -1762,7 +1762,7 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
                           const stepTopY = (i + 1) * h;
                           const balusterHeight = handrailHeight;
                           return (
-                            <Box key={`lbal1-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
+                            <Box key={`lbal1-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
                               <meshStandardMaterial color="#334155" />
                               <Edges scale={1} threshold={15} color="#1e293b" />
                             </Box>
@@ -1781,7 +1781,7 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
                             const stepTopY = (stepIdx + 1) * h;
                             const balusterHeight = handrailHeight;
                             return (
-                              <Box key={`lbal2-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
+                              <Box key={`lbal2-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
                                 <meshStandardMaterial color="#334155" />
                                 <Edges scale={1} threshold={15} color="#1e293b" />
                               </Box>
@@ -1800,7 +1800,7 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
                     const x = f1P + (i / 3) * landingL;
                     const balusterHeight = handrailHeight;
                     return (
-                      <Box key={`lguard-${i}`} args={[16, balusterHeight, 16]} position={[x, f1H + balusterHeight/2, postSize/2]}>
+                      <Box key={`lguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, f1H + balusterHeight/2, postSize/2]}>
                         <meshStandardMaterial color="#334155" />
                         <Edges scale={1} threshold={15} color="#1e293b" />
                       </Box>
@@ -1819,7 +1819,7 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
                           const stepTopY = (i + 1) * h;
                           const balusterHeight = handrailHeight;
                           return (
-                            <Box key={`rbal1-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
+                            <Box key={`rbal1-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
                               <meshStandardMaterial color="#334155" />
                               <Edges scale={1} threshold={15} color="#1e293b" />
                             </Box>
@@ -1838,7 +1838,7 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
                             const stepTopY = (stepIdx + 1) * h;
                             const balusterHeight = handrailHeight;
                             return (
-                              <Box key={`rbal2-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
+                              <Box key={`rbal2-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
                                 <meshStandardMaterial color="#334155" />
                                 <Edges scale={1} threshold={15} color="#1e293b" />
                               </Box>
@@ -1857,7 +1857,7 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
                     const x = f1P + (i / 3) * landingL;
                     const balusterHeight = handrailHeight;
                     return (
-                      <Box key={`rguard-${i}`} args={[16, balusterHeight, 16]} position={[x, f1H + balusterHeight/2, w - postSize/2]}>
+                      <Box key={`rguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, f1H + balusterHeight/2, w - postSize/2]}>
                         <meshStandardMaterial color="#334155" />
                         <Edges scale={1} threshold={15} color="#1e293b" />
                       </Box>
@@ -2088,7 +2088,7 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
                             const stepTopY = (i + 1) * h;
                             const balusterHeight = handrailHeight;
                             return (
-                              <Box key={`obal1-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
+                              <Box key={`obal1-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
                                 <meshStandardMaterial color="#334155" />
                                 <Edges scale={1} threshold={15} color="#1e293b" />
                               </Box>
@@ -2108,7 +2108,7 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
                             const z = W + i * p + p * fraction;
                             const balusterHeight = handrailHeight;
                             return (
-                              <Box key={`obal2-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x - ex * 300, stepTopY + balusterHeight/2, z]}>
+                              <Box key={`obal2-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x - ex * 300, stepTopY + balusterHeight/2, z]}>
                                 <meshStandardMaterial color="#334155" />
                                 <Edges scale={1} threshold={15} color="#1e293b" />
                               </Box>
@@ -2127,7 +2127,7 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
                         const z = postSize/2 + (i / 3) * (W - postSize);
                         const balusterHeight = handrailHeight;
                         return (
-                          <Box key={`oguard-${i}`} args={[16, balusterHeight, 16]} position={[f1P + W - postSize/2, f1H + h + balusterHeight/2, z - ex * 300]}>
+                          <Box key={`oguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[f1P + W - postSize/2, f1H + h + balusterHeight/2, z - ex * 300]}>
                             <meshStandardMaterial color="#334155" />
                             <Edges scale={1} threshold={15} color="#1e293b" />
                           </Box>
@@ -2149,7 +2149,7 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
                             const stepTopY = (i + 1) * h;
                             const balusterHeight = handrailHeight;
                             return (
-                              <Box key={`ibal1-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x, stepTopY + balusterHeight/2, W - postSize/2]}>
+                              <Box key={`ibal1-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, W - postSize/2]}>
                                 <meshStandardMaterial color="#334155" />
                                 <Edges scale={1} threshold={15} color="#1e293b" />
                               </Box>
@@ -2169,7 +2169,7 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
                             const z = W + i * p + p * fraction;
                             const balusterHeight = handrailHeight;
                             return (
-                              <Box key={`ibal2-${i}-${j}`} args={[16, balusterHeight, 16]} position={[x + ex * 300, stepTopY + balusterHeight/2, z]}>
+                              <Box key={`ibal2-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x + ex * 300, stepTopY + balusterHeight/2, z]}>
                                 <meshStandardMaterial color="#334155" />
                                 <Edges scale={1} threshold={15} color="#1e293b" />
                               </Box>
@@ -2526,7 +2526,7 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                               balusterHeight / 2,
                               -handrailR * Math.sin(localAngle)
                             ]}>
-                              <boxGeometry args={[16, balusterHeight, 16]} />
+                              <boxGeometry args={[postSize, handrailHeight, postSize]} />
                               <meshStandardMaterial color="#334155" />
                             </mesh>
                           );
