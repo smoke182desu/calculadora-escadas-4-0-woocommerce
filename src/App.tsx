@@ -2519,10 +2519,7 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
           {showHandrail && (
             <group position={[0, explodeOffsets.handrail, 0]}>
               <mesh>
-                <extrudeGeometry args={[
-                  new THREE.Shape().moveTo(-12, -12).lineTo(12, -12).lineTo(12, 12).lineTo(-12, 12).lineTo(-12, -12),
-                  { steps: 128, bevelEnabled: false, extrudePath: handrailCurve }
-                ]} />
+                <tubeGeometry args={[handrailCurve, 128, 15, 8, false]} />
                 <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
               </mesh>
               {/* End caps */}
