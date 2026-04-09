@@ -119,7 +119,7 @@ function getSpiralComfort(h: number, D: number, type?: 'height' | 'diameter') {
   // Comfort is heavily dictated by the overall diameter (passing space) and step height.
   
   if (h < 130 || h > 240) {
-    return { label: 'Impossível', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Altura do degrau perigosa ou fora da norma.' };
+    return { label: 'ImpossÃ­vel', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Altura do degrau perigosa ou fora da norma.' };
   }
   
   let hScore = 0; // 0: Vermelho, 1: Laranja, 2: Amarelo, 3: Verde
@@ -140,16 +140,16 @@ function getSpiralComfort(h: number, D: number, type?: 'height' | 'diameter') {
   if (type === 'diameter') finalScore = dScore;
 
   if (finalScore === 3) {
-    return { label: 'Bom', hex: '#22c55e', text: 'text-green-600', bg: 'bg-green-500', icon: CheckCircle2, desc: 'Proporção ideal e confortável para escada caracol.' };
+    return { label: 'Bom', hex: '#22c55e', text: 'text-green-600', bg: 'bg-green-500', icon: CheckCircle2, desc: 'ProporÃ§Ã£o ideal e confortË¡vel para escada caracol.' };
   }
   if (finalScore === 2) {
-    return { label: 'Aceitável', hex: '#eab308', text: 'text-yellow-600', bg: 'bg-yellow-400', icon: AlertTriangle, desc: 'Medidas aceitáveis, comuns em espaços reduzidos.' };
+    return { label: 'AceitÃ¡vel', hex: '#eab308', text: 'text-yellow-600', bg: 'bg-yellow-400', icon: AlertTriangle, desc: 'Medidas aceitÃ¡veis, comuns em espaÃ§os reduzidos.' };
   }
   if (finalScore === 1) {
-    return { label: 'Ruim', hex: '#f97316', text: 'text-orange-600', bg: 'bg-orange-500', icon: AlertTriangle, desc: 'Escada apertada ou cansativa. Use apenas se não houver espaço.' };
+    return { label: 'Ruim', hex: '#f97316', text: 'text-orange-600', bg: 'bg-orange-500', icon: AlertTriangle, desc: 'Escada apertada ou cansativa. Use apenas se nÃ£o houver espaÃ§o.' };
   }
   
-  return { label: 'Impossível', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Muito fora do padrão ou extremamente apertada.' };
+  return { label: 'ImpossÃ­vel', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Muito fora do padrÃ£o ou extremamente apertada.' };
 }
 
 function getComfort(h: number, p: number) {
@@ -157,22 +157,22 @@ function getComfort(h: number, p: number) {
   const blondelDiff = Math.abs(blondel - 640);
   
   if (h < 130 || h > 220 || p < 200 || p > 450) {
-    return { label: 'Impossível', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Medidas perigosas ou fora da norma. Risco de acidentes.' };
+    return { label: 'ImpossÃ­vel', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Medidas perigosas ou fora da norma. Risco de acidentes.' };
   }
   
   if (blondelDiff <= 20 && h >= 160 && h <= 180 && p >= 280 && p <= 320) {
-    return { label: 'Bom', hex: '#22c55e', text: 'text-green-600', bg: 'bg-green-500', icon: CheckCircle2, desc: 'Proporção ideal e muito confortável.' };
+    return { label: 'Bom', hex: '#22c55e', text: 'text-green-600', bg: 'bg-green-500', icon: CheckCircle2, desc: 'ProporÃ§Ã£o ideal e muito confortÃ¡vel.' };
   }
   
   if (blondelDiff <= 45 && h >= 150 && h <= 190 && p >= 250 && p <= 350) {
-    return { label: 'Ruim', hex: '#eab308', text: 'text-yellow-600', bg: 'bg-yellow-400', icon: AlertTriangle, desc: 'Aceitável, mas pode ser um pouco desconfortável.' };
+    return { label: 'Ruim', hex: '#eab308', text: 'text-yellow-600', bg: 'bg-yellow-400', icon: AlertTriangle, desc: 'AceitÃ¡vel, mas pode ser um pouco desconfortÃ¡vel.' };
   }
   
   if (blondelDiff <= 70 && h >= 140 && h <= 200 && p >= 220 && p <= 380) {
-    return { label: 'Péssimo', hex: '#f97316', text: 'text-orange-600', bg: 'bg-orange-500', icon: AlertTriangle, desc: 'Escada muito cansativa e fora do padrão ergonômico.' };
+    return { label: 'PÃ©ssimo', hex: '#f97316', text: 'text-orange-600', bg: 'bg-orange-500', icon: AlertTriangle, desc: 'Escada muito cansativa e fora do padrÃ£o ergonÃ´mico.' };
   }
   
-  return { label: 'Impossível', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Muito fora do padrão. Reveja as medidas totais.' };
+  return { label: 'ImpossÃ­vel', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Muito fora do padrÃ£o. Reveja as medidas totais.' };
 }
 
 function getBestConfiguration(H: number, L: number, topStepFlush: boolean = false) {
@@ -251,7 +251,7 @@ function getSpiralGradient(type: 'height' | 'diameter', fixedValue: number, topS
     let comfort = getSpiralComfort(h, D, type);
     const hasHeadClearance = totalSteps <= stepsPerTurn || (h * stepsPerTurn) >= 2000;
     if (!hasHeadClearance) {
-      comfort = { label: 'Impossível', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Sem altura livre (bate a cabeça).' };
+      comfort = { label: 'ImpossÃ­vel', hex: '#ef4444', text: 'text-red-600', bg: 'bg-red-500', icon: XCircle, desc: 'Sem altura livre (bate a cabeÃ§a).' };
     }
     
     stops.push(`${comfort.hex} ${i * (100/steps)}%`);
@@ -262,8 +262,8 @@ function getSpiralGradient(type: 'height' | 'diameter', fixedValue: number, topS
 const ColorLegend = () => (
   <div className="flex flex-wrap gap-4 justify-center mt-4 mb-6 text-xs font-medium text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100">
     <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-green-500"></div> Ideal</div>
-    <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-yellow-400"></div> Aceitável</div>
-    <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-orange-500"></div> Desconfortável</div>
+    <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-yellow-400"></div> AceitÃ¡vel</div>
+    <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-orange-500"></div> DesconfortÃ¡vel</div>
     <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-red-500"></div> Fora de Norma</div>
   </div>
 );
@@ -690,24 +690,23 @@ const Stair3DVisualizer = ({ steps, h, p, w, topStepFlush, exploded, showHandrai
             );
           })()}
 
-          {/* Handrails and Balusters */}
+          {/* Handrails and Posts */}
           {(() => {
             const handrailHeight = 900;
             const postSize = 40;
             const tubeRadius = 15;
-            
-            const leftPoints: THREE.Vector3[] = [];
-            const rightPoints: THREE.Vector3[] = [];
 
-            for (let i = 0; i < steps; i++) {
-              if (!topStepFlush && i === steps - 1) break;
-              [1/6, 1/2, 5/6].forEach((fraction) => {
-                const x = i * p + p * fraction;
-                const y = (i + 1) * h + handrailHeight;
-                leftPoints.push(new THREE.Vector3(x, y, postSize/2));
-                rightPoints.push(new THREE.Vector3(x, y, w - postSize/2));
-              });
-            }
+            const leftPoints = Array.from({ length: steps }).map((_, i) => {
+              const x = i * p + p / 2;
+              const y = (i + 1) * h + handrailHeight;
+              return new THREE.Vector3(x, y, postSize/2);
+            });
+
+            const rightPoints = Array.from({ length: steps }).map((_, i) => {
+              const x = i * p + p / 2;
+              const y = (i + 1) * h + handrailHeight;
+              return new THREE.Vector3(x, y, w - postSize/2);
+            });
 
             return (
               <>
@@ -715,21 +714,18 @@ const Stair3DVisualizer = ({ steps, h, p, w, topStepFlush, exploded, showHandrai
                 <group position={[0, ex * 200, -ex * 300]}>
                   {showHandrail && (
                     <>
-                      {Array.from({ length: steps }).flatMap((_, i) => {
-                        if (!topStepFlush && i === steps - 1) return [];
-                        return [1/6, 1/2, 5/6].map((fraction, j) => {
-                          const x = i * p + p * fraction;
-                          const stepTopY = (i + 1) * h;
-                          const balusterHeight = handrailHeight;
-                          return (
-                            <Box key={`lbal-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
-                              <meshStandardMaterial color="#334155" />
-                              <Edges scale={1} threshold={15} color="#1e293b" />
-                            </Box>
-                          );
-                        });
+                      {Array.from({ length: steps }).map((_, i) => {
+                        if (i % 3 !== 0 && i !== steps - 1) return null;
+                        const x = i * p + p / 2;
+                        const y = (i + 1) * h;
+                        return (
+                          <Box key={`lpost-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, y + handrailHeight/2, postSize/2]}>
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <Edges scale={1} threshold={15} color="#94a3b8" />
+                          </Box>
+                        );
                       })}
-                      <HandrailTube points={leftPoints} radius={tubeRadius} color="#334155" />
+                      <HandrailTube points={leftPoints} radius={tubeRadius} color="#94a3b8" />
                     </>
                   )}
                 </group>
@@ -738,21 +734,18 @@ const Stair3DVisualizer = ({ steps, h, p, w, topStepFlush, exploded, showHandrai
                 <group position={[0, ex * 200, ex * 300]}>
                   {showHandrail && (
                     <>
-                      {Array.from({ length: steps }).flatMap((_, i) => {
-                        if (!topStepFlush && i === steps - 1) return [];
-                        return [1/6, 1/2, 5/6].map((fraction, j) => {
-                          const x = i * p + p * fraction;
-                          const stepTopY = (i + 1) * h;
-                          const balusterHeight = handrailHeight;
-                          return (
-                            <Box key={`rbal-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
-                              <meshStandardMaterial color="#334155" />
-                              <Edges scale={1} threshold={15} color="#1e293b" />
-                            </Box>
-                          );
-                        });
+                      {Array.from({ length: steps }).map((_, i) => {
+                        if (i % 3 !== 0 && i !== steps - 1) return null;
+                        const x = i * p + p / 2;
+                        const y = (i + 1) * h;
+                        return (
+                          <Box key={`rpost-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, y + handrailHeight/2, w - postSize/2]}>
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <Edges scale={1} threshold={15} color="#94a3b8" />
+                          </Box>
+                        );
                       })}
-                      <HandrailTube points={rightPoints} radius={tubeRadius} color="#334155" />
+                      <HandrailTube points={rightPoints} radius={tubeRadius} color="#94a3b8" />
                     </>
                   )}
                 </group>
@@ -760,20 +753,20 @@ const Stair3DVisualizer = ({ steps, h, p, w, topStepFlush, exploded, showHandrai
                 {/* Top Guardrail (if not flush) */}
                 {showGuardrail && !topStepFlush && (
                   <group position={[totalP, totalH + ex * 200, 0]}>
-                    {/* Balusters at the top floor edge */}
+                    {/* Posts at the top floor edge */}
                     {Array.from({ length: 3 }).map((_, i) => {
                       const z = postSize/2 + (i / 2) * (w - postSize);
                       return (
-                        <Box key={`top-guard-${i}`} args={[16, handrailHeight, 16]} position={[0, handrailHeight/2, z]}>
-                          <meshStandardMaterial color="#334155" />
-                          <Edges scale={1} threshold={15} color="#1e293b" />
+                        <Box key={`top-guard-${i}`} args={[postSize, handrailHeight, postSize]} position={[0, handrailHeight/2, z]}>
+                          <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                          <Edges scale={1} threshold={15} color="#94a3b8" />
                         </Box>
                       );
                     })}
                     {/* Top rail */}
                     <mesh position={[0, handrailHeight, w/2]} rotation={[Math.PI/2, 0, 0]}>
                       <cylinderGeometry args={[tubeRadius, tubeRadius, w, 16]} />
-                      <meshStandardMaterial color="#334155" metalness={0.9} roughness={0.1} />
+                      <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
                     </mesh>
                   </group>
                 )}
@@ -827,7 +820,7 @@ const TopStepToggle = ({ value, onChange }: { value: boolean, onChange: (val: bo
       <div className="group relative cursor-help flex items-center">
         <Info size={18} className="text-blue-500 hover:text-blue-700 transition-colors" />
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-30 text-center leading-relaxed">
-          Define se o último degrau fica um nível abaixo do piso superior (Padrão) ou se o último degrau fica no mesmo nível do piso (Nivelado).
+          Define se o Ãºltimo degrau fica um nÃ­vel abaixo do piso superior (PadrÃ£o) ou se o Ãºltimo degrau fica no mesmo nÃ­vel do piso (Nivelado).
           <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-800"></div>
         </div>
       </div>
@@ -837,7 +830,7 @@ const TopStepToggle = ({ value, onChange }: { value: boolean, onChange: (val: bo
         onClick={() => onChange(false)}
         className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-bold transition-all ${!value ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
       >
-        Abaixo do piso (Padrão)
+        Abaixo do piso (PadrÃ£o)
       </button>
       <button 
         onClick={() => onChange(true)}
@@ -848,8 +841,8 @@ const TopStepToggle = ({ value, onChange }: { value: boolean, onChange: (val: bo
     </div>
     <p className="text-xs text-slate-500 mt-2 px-1">
       {!value 
-        ? "O último degrau fica um espelho abaixo do piso superior. O piso superior atua como a última pisada." 
-        : "O último degrau fica exatamente no mesmo nível do piso superior, estendendo o piso."}
+        ? "O Ãºltimo degrau fica um espelho abaixo do piso superior. O piso superior atua como a Ãºltima pisada." 
+        : "O Ãºltimo degrau fica exatamente no mesmo nÃ­vel do piso superior, estendendo o piso."}
     </p>
   </div>
 );
@@ -878,7 +871,7 @@ const CalculatorLayout = ({ title, onBack, config, inputs, visualizer, headerAct
           <h1 className="text-2xl font-bold text-slate-800">{title}</h1>
           <p className="text-slate-500 text-sm print:hidden">Ajuste as medidas para calcular o conforto.</p>
           <p className="hidden print:block text-slate-500 text-sm mt-1">
-            Relatório gerado em {new Date().toLocaleDateString('pt-BR')}
+            RelatÃ³rio gerado em {new Date().toLocaleDateString('pt-BR')}
           </p>
         </div>
       </div>
@@ -898,7 +891,7 @@ const CalculatorLayout = ({ title, onBack, config, inputs, visualizer, headerAct
       <div className="lg:col-span-6 space-y-6 print:mb-6">
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 print:shadow-none print:border-none print:p-0">
           <div>
-            <h2 className="text-xl font-bold mb-8 flex items-center gap-2 border-b pb-4">Medidas do Vão</h2>
+            <h2 className="text-xl font-bold mb-8 flex items-center gap-2 border-b pb-4">Medidas do VÃ£o</h2>
             {inputs}
           </div>
           <div className="mt-8 pt-6 border-t border-slate-100 print:mt-6 print:pt-6">
@@ -925,7 +918,7 @@ const CalculatorLayout = ({ title, onBack, config, inputs, visualizer, headerAct
               <config.comfort.icon size={32} />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Nível de Conforto</h3>
+              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">NÃ­vel de Conforto</h3>
               <div className={`text-3xl font-black tracking-tight mb-2`} style={{ color: config.comfort.hex }}>{config.comfort.label}</div>
               <p className="text-slate-700 font-medium leading-relaxed">{config.comfort.desc}</p>
             </div>
@@ -936,16 +929,24 @@ const CalculatorLayout = ({ title, onBack, config, inputs, visualizer, headerAct
           <h2 className="text-xl font-bold mb-6 flex items-center gap-2 border-b pb-4">Resultado</h2>
           <div className="grid grid-cols-2 gap-4 mb-8">
             <ResultCard title="Espelhos / Pisadas" value={`${config.steps} / ${config.treads}`} unit="un" icon={<Layers className="text-indigo-500" size={20} />} color="indigo" />
-            <ResultCard title="Fórmula Blondel" value={config.blondel.toFixed(1)} unit="mm" icon={<Calculator className="text-violet-500" size={20} />} color="violet" />
+            <ResultCard title="FÃ³rmula Blondel" value={config.blondel.toFixed(1)} unit="mm" icon={<Calculator className="text-violet-500" size={20} />} color="violet" />
             <ResultCard title="Altura (Espelho)" value={config.h.toFixed(1)} unit="mm" icon={<ArrowUpDown className="text-emerald-500" size={20} />} color="emerald" />
             <ResultCard title="Compr. (Pisada)" value={config.p.toFixed(1)} unit="mm" icon={<ArrowRightLeft className="text-blue-500" size={20} />} color="blue" />
           </div>
           <div className="flex-1 flex flex-col">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Visualização Geral</h3>
+              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">VisualizaÃ§Ã£o Geral</h3>
               {headerActions}
             </div>
-            {onBuyNow && (<button onClick={onBuyNow} className="w-full mb-4 py-3 bg-green-500 hover:bg-green-600 active:bg-green-700 text-white font-bold text-lg rounded-xl shadow-md flex items-center justify-center gap-2 transition-colors">🛒  COMPRAR AGORA</button>)}{visualizer}
+            {onBuyNow && (
+              <button
+                onClick={onBuyNow}
+                className="w-full mb-4 py-3 bg-green-500 hover:bg-green-600 active:bg-green-700 text-white font-bold text-lg rounded-xl shadow-md flex items-center justify-center gap-2 transition-colors"
+              >
+                ð&nbsp;&nbsp;COMPRAR AGORA
+              </button>
+            )}
+            {visualizer}
           </div>
         </div>
       </div>
@@ -957,17 +958,17 @@ const CalculatorLayout = ({ title, onBack, config, inputs, visualizer, headerAct
 };
 
 // ============================================================
-// CONFIGURAÇÃO DE PREÇO E INTEGRAÇÃO CDS INDÚSTRIA
+// CONFIGURAÃÃO DE PREÃO E INTEGRAÃÃO CDS INDÃSTRIA
 // ============================================================
 const PRECO_POR_KG = 70.00;
 const SITE_URL = 'https://www.cdsind.com.br';
 const WOOCOMMERCE_CART_URL = `${SITE_URL}/carrinho/`;
 
-// Densidades dos materiais (uso interno — não exibir ao cliente)
-const PESO_CHAPA11 = 25.0;   // kg/m² — chapa 11 antiderrapante (3,048 mm)
-const PESO_CHAPA316 = 37.4;  // kg/m² — chapa 3/16" (4,762 mm)
-const PESO_CORRIMAO = 1.0;   // kg/m  — tubo 1¼" chapa 18
-const MARGEM_MONTAGEM = 1.15; // +15% conexões, solda, fixações
+// Densidades dos materiais (uso interno â nÃ£o exibir ao cliente)
+const PESO_CHAPA11 = 25.0;   // kg/mÂ² â chapa 11 antiderrapante (3,048 mm)
+const PESO_CHAPA316 = 37.4;  // kg/mÂ² â chapa 3/16" (4,762 mm)
+const PESO_CORRIMAO = 1.0;   // kg/m  â tubo 1Â¼" chapa 18
+const MARGEM_MONTAGEM = 1.15; // +15% conexÃµes, solda, fixaÃ§Ãµes
 
 function calcWeightStraight(H: number, L: number, W: number, treads: number, ph: number, pp: number): number {
   if (ph <= 0 || pp <= 0) return 0;
@@ -1022,12 +1023,12 @@ function formatBRL(value: number): string {
 }
 
 // ============================================================
-// WIZARD — TIPOS E CONSTANTES
+// WIZARD â TIPOS E CONSTANTES
 // ============================================================
 interface LeadData { nome: string; email: string; telefone: string; }
 type StairType = 'straight' | 'landing' | 'lshape' | 'spiral';
 
-const WIZARD_LABELS = ['Modelo', 'Medidas', 'Seus Dados', 'Orçamento'];
+const WIZARD_LABELS = ['Modelo', 'Medidas', 'Seus Dados', 'OrÃ§amento'];
 
 // ============================================================
 // BARRA DE PROGRESSO DO WIZARD
@@ -1048,7 +1049,7 @@ const WizardProgressBar = ({ step }: { step: number }) => (
                   isActive ? 'bg-blue-600 text-white ring-4 ring-blue-100' :
                   'bg-slate-100 text-slate-400'
                 }`}>
-                  {isDone ? '✓' : n}
+                  {isDone ? 'â' : n}
                 </div>
                 <span className={`text-xs sm:text-sm font-medium hidden sm:block ${isActive ? 'text-blue-700' : isDone ? 'text-slate-600' : 'text-slate-400'}`}>{label}</span>
               </div>
@@ -1063,24 +1064,24 @@ const WizardProgressBar = ({ step }: { step: number }) => (
   </div>
 );
 
-// Botão "Próximo Passo" usado como salesKit nos calcs
+// BotÃ£o "PrÃ³ximo Passo" usado como salesKit nos calcs
 const WizardNextButton = ({ onNext }: { onNext: () => void }) => (
   <div className="mt-6 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
     <div className="text-center sm:text-left">
       <p className="text-white/80 text-sm">Medidas configuradas?</p>
-      <p className="text-white font-bold text-lg">Prosseguir e solicitar orçamento</p>
+      <p className="text-white font-bold text-lg">Prosseguir e solicitar orÃ§amento</p>
     </div>
     <button
       onClick={onNext}
       className="px-8 py-3 bg-white text-blue-700 font-bold rounded-xl shadow-md hover:bg-blue-50 transition-all hover:shadow-xl active:scale-95 whitespace-nowrap"
     >
-      Próximo Passo →
+      PrÃ³ximo Passo â
     </button>
   </div>
 );
 
 // ============================================================
-// PASSO 3 — DADOS DO CLIENTE
+// PASSO 3 â DADOS DO CLIENTE
 // ============================================================
 const StepDados = ({ onBack, onSubmit, isSubmitting }: {
   onBack: () => void;
@@ -1101,9 +1102,9 @@ const StepDados = ({ onBack, onSubmit, isSubmitting }: {
 
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!nome.trim()) e.nome = 'Nome é obrigatório';
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = 'E-mail inválido';
-    if (telefone.replace(/\D/g, '').length < 10) e.telefone = 'Telefone inválido';
+    if (!nome.trim()) e.nome = 'Nome Ã© obrigatÃ³rio';
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = 'E-mail invÃ¡lido';
+    if (telefone.replace(/\D/g, '').length < 10) e.telefone = 'Telefone invÃ¡lido';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -1125,8 +1126,8 @@ const StepDados = ({ onBack, onSubmit, isSubmitting }: {
             <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 rounded-2xl mb-3">
               <Calculator className="text-white w-7 h-7" />
             </div>
-            <h2 className="text-2xl font-black text-white">Quase lá!</h2>
-            <p className="text-blue-100 mt-1 text-sm">Preencha seus dados para receber o orçamento da sua escada.</p>
+            <h2 className="text-2xl font-black text-white">Quase lÃ¡!</h2>
+            <p className="text-blue-100 mt-1 text-sm">Preencha seus dados para receber o orÃ§amento da sua escada.</p>
           </div>
           <div className="p-8">
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -1168,10 +1169,10 @@ const StepDados = ({ onBack, onSubmit, isSubmitting }: {
                 disabled={isSubmitting}
                 className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md shadow-blue-600/20 hover:shadow-lg disabled:opacity-60 text-base mt-2"
               >
-                {isSubmitting ? 'Calculando orçamento...' : 'Ver Meu Orçamento →'}
+                {isSubmitting ? 'Calculando orÃ§amento...' : 'Ver Meu OrÃ§amento â'}
               </button>
             </form>
-            <p className="text-xs text-slate-400 text-center mt-4">🔒 Seus dados estão seguros e não serão compartilhados.</p>
+            <p className="text-xs text-slate-400 text-center mt-4">ð Seus dados estÃ£o seguros e nÃ£o serÃ£o compartilhados.</p>
           </div>
         </div>
       </div>
@@ -1180,7 +1181,7 @@ const StepDados = ({ onBack, onSubmit, isSubmitting }: {
 };
 
 // ============================================================
-// PASSO 4 — ORÇAMENTO + CARRINHO
+// PASSO 4 â ORÃAMENTO + CARRINHO
 // ============================================================
 const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onBack, onRestart }: {
   stairType: StairType;
@@ -1200,8 +1201,8 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
 
   const modelo = typeLabel[stairType] || 'Escada Personalizada';
   const desc = stairType === 'spiral'
-    ? `Caracol · H${savedDims.H}mm · Ø${savedDims.D}mm · ${savedConfig?.steps || ''}°`
-    : `${modelo} · H${savedDims.H}mm · L${savedDims.L || (savedDims.L1 ? `${savedDims.L1}+${savedDims.L2}` : 0)}mm · W${savedDims.W}mm`;
+    ? `Caracol Â· H${savedDims.H}mm Â· Ã${savedDims.D}mm Â· ${savedConfig?.steps || ''}Â°`
+    : `${modelo} Â· H${savedDims.H}mm Â· L${savedDims.L || (savedDims.L1 ? `${savedDims.L1}+${savedDims.L2}` : 0)}mm Â· W${savedDims.W}mm`;
 
   const handleAddToCart = () => {
     const params = new URLSearchParams({
@@ -1222,9 +1223,9 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
     { label: 'Altura total', value: `${savedDims.H} mm` },
     savedDims.L > 0 && { label: 'Comprimento', value: `${savedDims.L} mm` },
     savedDims.L1 > 0 && { label: 'Lance 1 / Lance 2', value: `${savedDims.L1} mm / ${savedDims.L2} mm` },
-    savedDims.D > 0 && { label: 'Diâmetro', value: `${savedDims.D} mm` },
+    savedDims.D > 0 && { label: 'DiÃ¢metro', value: `${savedDims.D} mm` },
     savedDims.W > 0 && { label: 'Largura', value: `${savedDims.W} mm` },
-    savedConfig?.steps > 0 && { label: 'Nº de degraus', value: `${savedConfig.steps}` },
+    savedConfig?.steps > 0 && { label: 'NÂº de degraus', value: `${savedConfig.steps}` },
     savedConfig?.h > 0 && { label: 'Altura do espelho', value: `${savedConfig.h.toFixed(0)} mm` },
     savedConfig?.p > 0 && { label: 'Profundidade da pisada', value: `${savedConfig.p.toFixed(0)} mm` },
   ].filter(Boolean) as { label: string; value: string }[];
@@ -1237,13 +1238,13 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
           <div className="inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-3xl mb-4 shadow-2xl shadow-green-500/40">
             <CheckCircle2 className="text-white w-10 h-10" />
           </div>
-          <h2 className="text-3xl font-black text-white">Seu Orçamento</h2>
+          <h2 className="text-3xl font-black text-white">Seu OrÃ§amento</h2>
           <p className="text-slate-300 mt-2">
-            Olá, <strong className="text-white">{leadData.nome.split(' ')[0]}</strong>! Calculamos o valor da sua escada personalizada.
+            OlÃ¡, <strong className="text-white">{leadData.nome.split(' ')[0]}</strong>! Calculamos o valor da sua escada personalizada.
           </p>
         </div>
 
-        {/* Card de preço */}
+        {/* Card de preÃ§o */}
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-5">
           <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-5">
             <p className="text-blue-200 text-xs font-semibold uppercase tracking-wider">{modelo}</p>
@@ -1251,14 +1252,14 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
           </div>
 
           <div className="px-8 py-6 text-center border-b border-slate-100">
-            <p className="text-slate-500 text-sm mb-1">Valor estimado para fabricação e instalação</p>
+            <p className="text-slate-500 text-sm mb-1">Valor estimado para fabricaÃ§Ã£o e instalaÃ§Ã£o</p>
             <div className="text-5xl font-black text-slate-900">{formatBRL(price)}</div>
-            <p className="text-slate-400 text-xs mt-2">* Sujeito a confirmação técnica · Inclui fabricação, pintura e montagem</p>
+            <p className="text-slate-400 text-xs mt-2">* Sujeito a confirmaÃ§Ã£o tÃ©cnica Â· Inclui fabricaÃ§Ã£o, pintura e montagem</p>
           </div>
 
-          {/* Especificações */}
+          {/* EspecificaÃ§Ãµes */}
           <div className="px-8 py-5">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Especificações do Projeto</p>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">EspecificaÃ§Ãµes do Projeto</p>
             <div className="grid grid-cols-2 gap-2">
               {specs.map((s, i) => (
                 <div key={i} className="bg-slate-50 rounded-xl p-3">
@@ -1270,33 +1271,33 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
           </div>
         </div>
 
-        {/* Botões de ação */}
+        {/* BotÃµes de aÃ§Ã£o */}
         <div className="space-y-3">
           <button
             onClick={handleAddToCart}
             className="w-full py-5 bg-green-500 hover:bg-green-400 text-white font-black text-xl rounded-2xl transition-all shadow-xl shadow-green-500/30 hover:shadow-2xl active:scale-[0.98] flex items-center justify-center gap-3"
           >
-            🛒 Finalizar Pedido no Carrinho
+            ð Finalizar Pedido no Carrinho
           </button>
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={onBack}
               className="py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all text-sm border border-white/10"
             >
-              ← Voltar
+              â Voltar
             </button>
             <button
               onClick={onRestart}
               className="py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all text-sm border border-white/10"
             >
-              ↺ Nova Escada
+              âº Nova Escada
             </button>
           </div>
         </div>
 
         <p className="text-center text-slate-500 text-xs mt-6 leading-relaxed">
-          Ao finalizar, você será direcionado ao checkout. Nossa equipe técnica entrará em contato
-          para confirmar detalhes e agendar a instalação.
+          Ao finalizar, vocÃª serÃ¡ direcionado ao checkout. Nossa equipe tÃ©cnica entrarÃ¡ em contato
+          para confirmar detalhes e agendar a instalaÃ§Ã£o.
         </p>
       </div>
     </div>
@@ -1329,8 +1330,8 @@ const LeadModal = ({ onClose, onSubmit, isSubmitting }: {
             <Calculator size={24} />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-slate-800">Quase lá!</h2>
-            <p className="text-slate-500 text-sm">Preencha seus dados para ver o orçamento</p>
+            <h2 className="text-xl font-bold text-slate-800">Quase lÃ¡!</h2>
+            <p className="text-slate-500 text-sm">Preencha seus dados para ver o orÃ§amento</p>
           </div>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -1352,10 +1353,10 @@ const LeadModal = ({ onClose, onSubmit, isSubmitting }: {
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all text-slate-800"
               placeholder="(00) 00000-0000" />
           </div>
-          <p className="text-xs text-slate-400">Seus dados são usados apenas para envio do orçamento e contato comercial.</p>
+          <p className="text-xs text-slate-400">Seus dados sÃ£o usados apenas para envio do orÃ§amento e contato comercial.</p>
           <button type="submit" disabled={isSubmitting || !nome || !email || !telefone}
             className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 disabled:opacity-50 disabled:cursor-not-allowed text-lg">
-            {isSubmitting ? 'Enviando…' : 'Ver Orçamento →'}
+            {isSubmitting ? 'Enviandoâ¦' : 'Ver OrÃ§amento â'}
           </button>
         </form>
       </div>
@@ -1387,7 +1388,7 @@ const KitDePecas = ({ p, h, w, steps, flights, landingSupports, type, landingW, 
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold mb-4 flex items-center gap-2 border-b pb-4">
-        <Package className="w-6 h-6 text-blue-600" /> Kit de Peças para Fabricação
+        <Package className="w-6 h-6 text-blue-600" /> Kit de PeÃ§as para FabricaÃ§Ã£o
       </h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1424,7 +1425,7 @@ const KitDePecas = ({ p, h, w, steps, flights, landingSupports, type, landingW, 
             <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
               <TrendingUp className="w-4 h-4" />
             </div>
-            <h3 className="font-bold text-slate-800">Estrutura Metálica (Longarinas e Suportes)</h3>
+            <h3 className="font-bold text-slate-800">Estrutura MetÃ¡lica (Longarinas e Suportes)</h3>
           </div>
           <p className="text-slate-600 mb-4">Perfil sugerido: <strong>Tubo Retangular {Math.round(profileHeight)}x{profileWidth}mm</strong></p>
           
@@ -1440,7 +1441,7 @@ const KitDePecas = ({ p, h, w, steps, flights, landingSupports, type, landingW, 
               <div key={`ls-${i}`} className="bg-slate-50 p-3 rounded-lg border border-slate-100">
                 <div className="text-sm font-bold text-slate-700">{ls.name}</div>
                 <div className="text-lg font-bold text-blue-600">{ls.count}x {Math.round(ls.length)} mm</div>
-                <div className="text-xs text-slate-500">Corte reto (90º)</div>
+                <div className="text-xs text-slate-500">Corte reto (90Âº)</div>
               </div>
             ))}
           </div>
@@ -1450,25 +1451,25 @@ const KitDePecas = ({ p, h, w, steps, flights, landingSupports, type, landingW, 
           </div>
         </div>
 
-        {/* Corrimão */}
+        {/* CorrimÃ£o */}
         <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-sm md:col-span-2">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
               <Minus className="w-4 h-4" />
             </div>
-            <h3 className="font-bold text-slate-800">Kit Corrimão e Guarda-corpo</h3>
+            <h3 className="font-bold text-slate-800">Kit CorrimÃ£o e Guarda-corpo</h3>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-between">
             <div>
-              <p className="text-slate-600 text-sm mb-1">Tubos para corrimão (aprox.)</p>
+              <p className="text-slate-600 text-sm mb-1">Tubos para corrimÃ£o (aprox.)</p>
               <div className="text-2xl font-black text-slate-800">{totalHandrail.toFixed(1)} <span className="text-lg font-medium text-slate-500">metros</span></div>
             </div>
             <div>
-              <p className="text-slate-600 text-sm mb-1">Colunas de fixação (estimativa)</p>
+              <p className="text-slate-600 text-sm mb-1">Colunas de fixaÃ§Ã£o (estimativa)</p>
               <div className="text-2xl font-black text-slate-800">{Math.ceil(steps / 3) * 2 + (landingL ? 4 : 0)} <span className="text-lg font-medium text-slate-500">unidades</span></div>
             </div>
           </div>
-          <p className="text-xs text-slate-400 mt-3">Sugerido tubo redondo de 1 1/2" ou retangular 40x40mm. Altura padrão de 900mm.</p>
+          <p className="text-xs text-slate-400 mt-3">Sugerido tubo redondo de 1 1/2" ou retangular 40x40mm. Altura padrÃ£o de 900mm.</p>
         </div>
       </div>
     </div>
@@ -1490,7 +1491,8 @@ const StraightCalc = ({ onBack, onNext }: any) => {
 
   return (
     <CalculatorLayout 
-      title="Escada Reta (Sem Patamar)" onBack={onBack} config={config}      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'straight', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: 0, landingW: 0 }, '*')}
+      title="Escada Reta (Sem Patamar)" onBack={onBack} config={config}
+      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'straight', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: 0, landingW: 0 }, '*')}
       salesKit={
         <WizardNextButton onNext={() => onNext(config, { H, L, W, L1: 0, L2: 0, D: 0 })} />
       }
@@ -1506,7 +1508,7 @@ const StraightCalc = ({ onBack, onNext }: any) => {
             onChange={setH} 
             gradient={getGradient('height', L, topStepFlush)} 
             unit="mm" 
-            tooltip="Altura total do piso inferior ao piso superior. O termômetro indica se a altura é confortável para o comprimento atual."
+            tooltip="Altura total do piso inferior ao piso superior. O termÃ´metro indica se a altura Ã© confortÃ¡vel para o comprimento atual."
           />
           <ThermometerSlider 
             label="Comprimento Total" 
@@ -1516,7 +1518,7 @@ const StraightCalc = ({ onBack, onNext }: any) => {
             onChange={setL} 
             gradient={getGradient('length', H, topStepFlush)} 
             unit="mm" 
-            tooltip="Espaço horizontal disponível para a escada. O termômetro indica se o comprimento é suficiente para uma subida suave."
+            tooltip="EspaÃ§o horizontal disponÃ­vel para a escada. O termÃ´metro indica se o comprimento Ã© suficiente para uma subida suave."
           />
           <ThermometerSlider 
             label="Largura da Escada" 
@@ -1526,7 +1528,7 @@ const StraightCalc = ({ onBack, onNext }: any) => {
             onChange={setW} 
             gradient="linear-gradient(to right, #e2e8f0, #94a3b8)" 
             unit="mm" 
-            tooltip="Largura dos degraus. Recomendado mínimo de 800mm para residências e 1200mm para locais públicos."
+            tooltip="Largura dos degraus. Recomendado mÃ­nimo de 800mm para residÃªncias e 1200mm para locais pÃºblicos."
           />
         </>
       }
@@ -1552,9 +1554,9 @@ const StraightCalc = ({ onBack, onNext }: any) => {
               <button
                 onClick={() => setShowHandrail(!showHandrail)}
                 className={`px-4 py-2 text-sm font-bold rounded-md flex items-center gap-2 transition-all border ${showHandrail ? 'bg-blue-100 text-blue-700 border-blue-200 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
-                title={showHandrail ? 'Ocultar Corrimão' : 'Mostrar Corrimão'}
+                title={showHandrail ? 'Ocultar CorrimÃ£o' : 'Mostrar CorrimÃ£o'}
               >
-                {showHandrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} Corrimão
+                {showHandrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} CorrimÃ£o
               </button>
               <button
                 onClick={() => setShowGuardrail(!showGuardrail)}
@@ -1717,14 +1719,12 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
             const leftPoints: THREE.Vector3[] = [];
             const rightPoints: THREE.Vector3[] = [];
 
-            // Flight 1 points
+            // Flight 1 points - center of each step
             for (let i = 0; i < steps1; i++) {
-              [1/6, 1/2, 5/6].forEach((fraction) => {
-                const x = i * p + p * fraction;
-                const y = (i + 1) * h + handrailHeight;
-                leftPoints.push(new THREE.Vector3(x, y, postSize/2));
-                rightPoints.push(new THREE.Vector3(x, y, w - postSize/2));
-              });
+              const x = i * p + p / 2;
+              const y = (i + 1) * h + handrailHeight;
+              leftPoints.push(new THREE.Vector3(x, y, postSize/2));
+              rightPoints.push(new THREE.Vector3(x, y, w - postSize/2));
             }
 
             // Landing points
@@ -1735,17 +1735,15 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
               rightPoints.push(new THREE.Vector3(x, landingY, w - postSize/2));
             }
 
-            // Flight 2 points
+            // Flight 2 points - center of each step
             let currentX = f1P + landingL;
             for (let i = 0; i < (steps - steps1); i++) {
               const stepIdx = i + steps1;
               if (!topStepFlush && stepIdx === steps - 1) break;
-              [1/6, 1/2, 5/6].forEach((fraction) => {
-                const x = currentX + p * fraction;
-                const y = (stepIdx + 1) * h + handrailHeight;
-                leftPoints.push(new THREE.Vector3(x, y, postSize/2));
-                rightPoints.push(new THREE.Vector3(x, y, w - postSize/2));
-              });
+              const x = currentX + p / 2;
+              const y = (stepIdx + 1) * h + handrailHeight;
+              leftPoints.push(new THREE.Vector3(x, y, postSize/2));
+              rightPoints.push(new THREE.Vector3(x, y, w - postSize/2));
               currentX += p;
             }
 
@@ -1755,54 +1753,50 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
                 <group position={[0, ex * 200, -ex * 300]}>
                   {showHandrail && (
                     <>
-                      {/* Flight 1 Balusters */}
-                      {Array.from({ length: steps1 }).flatMap((_, i) => {
-                        return [1/6, 1/2, 5/6].map((fraction, j) => {
-                          const x = i * p + p * fraction;
-                          const stepTopY = (i + 1) * h;
-                          const balusterHeight = handrailHeight;
-                          return (
-                            <Box key={`lbal1-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
-                              <meshStandardMaterial color="#334155" />
-                              <Edges scale={1} threshold={15} color="#1e293b" />
-                            </Box>
-                          );
-                        });
+                      {/* Flight 1 Posts - every 3 steps */}
+                      {Array.from({ length: steps1 }).map((_, i) => {
+                        if (i % 3 !== 0 && i !== steps1 - 1) return null;
+                        const x = i * p + p / 2;
+                        const y = (i + 1) * h;
+                        return (
+                          <Box key={`lpost1-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, y + handrailHeight/2, postSize/2]}>
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <Edges scale={1} threshold={15} color="#94a3b8" />
+                          </Box>
+                        );
                       })}
-                      
-                      {/* Flight 2 Balusters */}
+
+                      {/* Flight 2 Posts - every 3 steps */}
                       {(() => {
                         let cX = f1P + landingL;
-                        return Array.from({ length: steps - steps1 }).flatMap((_, i) => {
+                        const steps2 = steps - steps1;
+                        return Array.from({ length: steps2 }).map((_, i) => {
                           const stepIdx = i + steps1;
-                          if (!topStepFlush && stepIdx === steps - 1) return [];
-                          const res = [1/6, 1/2, 5/6].map((fraction, j) => {
-                            const x = cX + p * fraction;
-                            const stepTopY = (stepIdx + 1) * h;
-                            const balusterHeight = handrailHeight;
-                            return (
-                              <Box key={`lbal2-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
-                                <meshStandardMaterial color="#334155" />
-                                <Edges scale={1} threshold={15} color="#1e293b" />
-                              </Box>
-                            );
-                          });
+                          if (!topStepFlush && stepIdx === steps - 1) return null;
+                          if (i % 3 !== 0 && i !== steps2 - 1) { cX += p; return null; }
+                          const x = cX + p / 2;
+                          const y = (stepIdx + 1) * h;
+                          const result = (
+                            <Box key={`lpost2-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, y + handrailHeight/2, postSize/2]}>
+                              <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                              <Edges scale={1} threshold={15} color="#94a3b8" />
+                            </Box>
+                          );
                           cX += p;
-                          return res;
+                          return result;
                         });
                       })()}
-                      <HandrailTube points={leftPoints} radius={tubeRadius} color="#334155" />
+                      <HandrailTube points={leftPoints} radius={tubeRadius} color="#94a3b8" />
                     </>
                   )}
-                  
+
                   {/* Landing Guardrail (Left) */}
                   {showGuardrail && Array.from({ length: 4 }).map((_, i) => {
                     const x = f1P + (i / 3) * landingL;
-                    const balusterHeight = handrailHeight;
                     return (
-                      <Box key={`lguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, f1H + balusterHeight/2, postSize/2]}>
-                        <meshStandardMaterial color="#334155" />
-                        <Edges scale={1} threshold={15} color="#1e293b" />
+                      <Box key={`lguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, f1H + handrailHeight/2, postSize/2]}>
+                        <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                        <Edges scale={1} threshold={15} color="#94a3b8" />
                       </Box>
                     );
                   })}
@@ -1812,54 +1806,50 @@ const Landing3DVisualizer = ({ steps, h, p, w, landingL, landingStepPos, topStep
                 <group position={[0, ex * 200, ex * 300]}>
                   {showHandrail && (
                     <>
-                      {/* Flight 1 Balusters */}
-                      {Array.from({ length: steps1 }).flatMap((_, i) => {
-                        return [1/6, 1/2, 5/6].map((fraction, j) => {
-                          const x = i * p + p * fraction;
-                          const stepTopY = (i + 1) * h;
-                          const balusterHeight = handrailHeight;
-                          return (
-                            <Box key={`rbal1-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
-                              <meshStandardMaterial color="#334155" />
-                              <Edges scale={1} threshold={15} color="#1e293b" />
-                            </Box>
-                          );
-                        });
+                      {/* Flight 1 Posts - every 3 steps */}
+                      {Array.from({ length: steps1 }).map((_, i) => {
+                        if (i % 3 !== 0 && i !== steps1 - 1) return null;
+                        const x = i * p + p / 2;
+                        const y = (i + 1) * h;
+                        return (
+                          <Box key={`rpost1-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, y + handrailHeight/2, w - postSize/2]}>
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <Edges scale={1} threshold={15} color="#94a3b8" />
+                          </Box>
+                        );
                       })}
 
-                      {/* Flight 2 Balusters */}
+                      {/* Flight 2 Posts - every 3 steps */}
                       {(() => {
                         let cX = f1P + landingL;
-                        return Array.from({ length: steps - steps1 }).flatMap((_, i) => {
+                        const steps2 = steps - steps1;
+                        return Array.from({ length: steps2 }).map((_, i) => {
                           const stepIdx = i + steps1;
-                          if (!topStepFlush && stepIdx === steps - 1) return [];
-                          const res = [1/6, 1/2, 5/6].map((fraction, j) => {
-                            const x = cX + p * fraction;
-                            const stepTopY = (stepIdx + 1) * h;
-                            const balusterHeight = handrailHeight;
-                            return (
-                              <Box key={`rbal2-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, w - postSize/2]}>
-                                <meshStandardMaterial color="#334155" />
-                                <Edges scale={1} threshold={15} color="#1e293b" />
-                              </Box>
-                            );
-                          });
+                          if (!topStepFlush && stepIdx === steps - 1) return null;
+                          if (i % 3 !== 0 && i !== steps2 - 1) { cX += p; return null; }
+                          const x = cX + p / 2;
+                          const y = (stepIdx + 1) * h;
+                          const result = (
+                            <Box key={`rpost2-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, y + handrailHeight/2, w - postSize/2]}>
+                              <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                              <Edges scale={1} threshold={15} color="#94a3b8" />
+                            </Box>
+                          );
                           cX += p;
-                          return res;
+                          return result;
                         });
                       })()}
-                      <HandrailTube points={rightPoints} radius={tubeRadius} color="#334155" />
+                      <HandrailTube points={rightPoints} radius={tubeRadius} color="#94a3b8" />
                     </>
                   )}
 
                   {/* Landing Guardrail (Right) */}
                   {showGuardrail && Array.from({ length: 4 }).map((_, i) => {
                     const x = f1P + (i / 3) * landingL;
-                    const balusterHeight = handrailHeight;
                     return (
-                      <Box key={`rguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, f1H + balusterHeight/2, w - postSize/2]}>
-                        <meshStandardMaterial color="#334155" />
-                        <Edges scale={1} threshold={15} color="#1e293b" />
+                      <Box key={`rguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, f1H + handrailHeight/2, w - postSize/2]}>
+                        <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                        <Edges scale={1} threshold={15} color="#94a3b8" />
                       </Box>
                     );
                   })}
@@ -2040,14 +2030,12 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
             const outerPoints: THREE.Vector3[] = [];
             const innerPoints: THREE.Vector3[] = [];
 
-            // Flight 1 points
+            // Flight 1 points - center of each step
             for (let i = 0; i < steps1; i++) {
-              [1/6, 1/2, 5/6].forEach((fraction) => {
-                const x = i * p + p * fraction;
-                const y = (i + 1) * h + handrailHeight;
-                outerPoints.push(new THREE.Vector3(x, y, postSize/2));
-                innerPoints.push(new THREE.Vector3(x, y, W - postSize/2));
-              });
+              const x = i * p + p / 2;
+              const y = (i + 1) * h + handrailHeight;
+              outerPoints.push(new THREE.Vector3(x, y, postSize/2));
+              innerPoints.push(new THREE.Vector3(x, y, W - postSize/2));
             }
 
             // Landing points
@@ -2060,18 +2048,16 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
             // Inner corner
             innerPoints.push(new THREE.Vector3(f1P + postSize/2, landingY, W - postSize/2));
 
-            // Flight 2 points
+            // Flight 2 points - center of each step
             for (let i = 0; i < steps2; i++) {
               const stepIdx = i + steps1 + 1;
               if (!topStepFlush && stepIdx === steps - 1) break;
-              [1/6, 1/2, 5/6].forEach((fraction) => {
-                const x_outer = f1P + W - postSize/2;
-                const x_inner = f1P + postSize/2;
-                const y = (stepIdx + 1) * h + handrailHeight;
-                const z = W + i * p + p * fraction;
-                outerPoints.push(new THREE.Vector3(x_outer, y, z));
-                innerPoints.push(new THREE.Vector3(x_inner, y, z));
-              });
+              const x_outer = f1P + W - postSize/2;
+              const x_inner = f1P + postSize/2;
+              const y = (stepIdx + 1) * h + handrailHeight;
+              const z = W + i * p + p / 2;
+              outerPoints.push(new THREE.Vector3(x_outer, y, z));
+              innerPoints.push(new THREE.Vector3(x_inner, y, z));
             }
 
             return (
@@ -2080,56 +2066,51 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
                 <group position={[0, ex * 200, 0]}>
                   {showHandrail && (
                     <>
-                      {/* Flight 1 Balusters */}
+                      {/* Flight 1 Posts - every 3 steps */}
                       <group position={[0, 0, -ex * 300]}>
-                        {Array.from({ length: steps1 }).flatMap((_, i) => {
-                          return [1/6, 1/2, 5/6].map((fraction, j) => {
-                            const x = i * p + p * fraction;
-                            const stepTopY = (i + 1) * h;
-                            const balusterHeight = handrailHeight;
-                            return (
-                              <Box key={`obal1-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, postSize/2]}>
-                                <meshStandardMaterial color="#334155" />
-                                <Edges scale={1} threshold={15} color="#1e293b" />
-                              </Box>
-                            );
-                          });
+                        {Array.from({ length: steps1 }).map((_, i) => {
+                          if (i % 3 !== 0 && i !== steps1 - 1) return null;
+                          const x = i * p + p / 2;
+                          const y = (i + 1) * h;
+                          return (
+                            <Box key={`opost1-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, y + handrailHeight/2, postSize/2]}>
+                              <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                              <Edges scale={1} threshold={15} color="#94a3b8" />
+                            </Box>
+                          );
                         })}
                       </group>
-                      
-                      {/* Flight 2 Balusters */}
+
+                      {/* Flight 2 Posts - every 3 steps */}
                       <group position={[0, 0, 0]}>
-                        {Array.from({ length: steps2 }).flatMap((_, i) => {
+                        {Array.from({ length: steps2 }).map((_, i) => {
                           const stepIdx = i + steps1 + 1;
-                          if (!topStepFlush && stepIdx === steps - 1) return [];
-                          return [1/6, 1/2, 5/6].map((fraction, j) => {
-                            const x = f1P + W - postSize/2;
-                            const stepTopY = (stepIdx + 1) * h;
-                            const z = W + i * p + p * fraction;
-                            const balusterHeight = handrailHeight;
-                            return (
-                              <Box key={`obal2-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x - ex * 300, stepTopY + balusterHeight/2, z]}>
-                                <meshStandardMaterial color="#334155" />
-                                <Edges scale={1} threshold={15} color="#1e293b" />
-                              </Box>
-                            );
-                          });
+                          if (!topStepFlush && stepIdx === steps - 1) return null;
+                          if (i % 3 !== 0 && i !== steps2 - 1) return null;
+                          const x = f1P + W - postSize/2;
+                          const y = (stepIdx + 1) * h;
+                          const z = W + i * p + p / 2;
+                          return (
+                            <Box key={`opost2-${i}`} args={[postSize, handrailHeight, postSize]} position={[x - ex * 300, y + handrailHeight/2, z]}>
+                              <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                              <Edges scale={1} threshold={15} color="#94a3b8" />
+                            </Box>
+                          );
                         })}
                       </group>
-                      <HandrailTube points={outerPoints.map(p => new THREE.Vector3(p.x - (p.z > W ? ex * 300 : 0), p.y, p.z - (p.z <= W ? ex * 300 : 0)))} radius={tubeRadius} color="#334155" />
+                      <HandrailTube points={outerPoints.map(p => new THREE.Vector3(p.x - (p.z > W ? ex * 300 : 0), p.y, p.z - (p.z <= W ? ex * 300 : 0)))} radius={tubeRadius} color="#94a3b8" />
                     </>
                   )}
-                  
+
                   {/* Outer Landing Guardrail */}
                   {showGuardrail && (
                     <group position={[0, 0, 0]}>
                       {Array.from({ length: 4 }).map((_, i) => {
                         const z = postSize/2 + (i / 3) * (W - postSize);
-                        const balusterHeight = handrailHeight;
                         return (
-                          <Box key={`oguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[f1P + W - postSize/2, f1H + h + balusterHeight/2, z - ex * 300]}>
-                            <meshStandardMaterial color="#334155" />
-                            <Edges scale={1} threshold={15} color="#1e293b" />
+                          <Box key={`oguard-${i}`} args={[postSize, handrailHeight, postSize]} position={[f1P + W - postSize/2, f1H + h + handrailHeight/2, z - ex * 300]}>
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                            <Edges scale={1} threshold={15} color="#94a3b8" />
                           </Box>
                         );
                       })}
@@ -2141,52 +2122,48 @@ const LShape3DVisualizer = ({ L1, L2, W, p, h, steps, topStepFlush, exploded, sh
                 <group position={[0, ex * 200, 0]}>
                   {showHandrail && (
                     <>
-                      {/* Flight 1 Balusters */}
+                      {/* Flight 1 Posts - every 3 steps */}
                       <group position={[0, 0, ex * 300]}>
-                        {Array.from({ length: steps1 }).flatMap((_, i) => {
-                          return [1/6, 1/2, 5/6].map((fraction, j) => {
-                            const x = i * p + p * fraction;
-                            const stepTopY = (i + 1) * h;
-                            const balusterHeight = handrailHeight;
-                            return (
-                              <Box key={`ibal1-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x, stepTopY + balusterHeight/2, W - postSize/2]}>
-                                <meshStandardMaterial color="#334155" />
-                                <Edges scale={1} threshold={15} color="#1e293b" />
-                              </Box>
-                            );
-                          });
+                        {Array.from({ length: steps1 }).map((_, i) => {
+                          if (i % 3 !== 0 && i !== steps1 - 1) return null;
+                          const x = i * p + p / 2;
+                          const y = (i + 1) * h;
+                          return (
+                            <Box key={`ipost1-${i}`} args={[postSize, handrailHeight, postSize]} position={[x, y + handrailHeight/2, W - postSize/2]}>
+                              <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                              <Edges scale={1} threshold={15} color="#94a3b8" />
+                            </Box>
+                          );
                         })}
                       </group>
 
-                      {/* Flight 2 Balusters */}
+                      {/* Flight 2 Posts - every 3 steps */}
                       <group position={[0, 0, 0]}>
-                        {Array.from({ length: steps2 }).flatMap((_, i) => {
+                        {Array.from({ length: steps2 }).map((_, i) => {
                           const stepIdx = i + steps1 + 1;
-                          if (!topStepFlush && stepIdx === steps - 1) return [];
-                          return [1/6, 1/2, 5/6].map((fraction, j) => {
-                            const x = f1P + postSize/2;
-                            const stepTopY = (stepIdx + 1) * h;
-                            const z = W + i * p + p * fraction;
-                            const balusterHeight = handrailHeight;
-                            return (
-                              <Box key={`ibal2-${i}-${j}`} args={[postSize, handrailHeight, postSize]} position={[x + ex * 300, stepTopY + balusterHeight/2, z]}>
-                                <meshStandardMaterial color="#334155" />
-                                <Edges scale={1} threshold={15} color="#1e293b" />
-                              </Box>
-                            );
-                          });
+                          if (!topStepFlush && stepIdx === steps - 1) return null;
+                          if (i % 3 !== 0 && i !== steps2 - 1) return null;
+                          const x = f1P + postSize/2;
+                          const y = (stepIdx + 1) * h;
+                          const z = W + i * p + p / 2;
+                          return (
+                            <Box key={`ipost2-${i}`} args={[postSize, handrailHeight, postSize]} position={[x + ex * 300, y + handrailHeight/2, z]}>
+                              <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                              <Edges scale={1} threshold={15} color="#94a3b8" />
+                            </Box>
+                          );
                         })}
                       </group>
-                      <HandrailTube points={innerPoints.map(p => new THREE.Vector3(p.x + (p.z > W ? ex * 300 : 0), p.y, p.z + (p.z <= W ? ex * 300 : 0)))} radius={tubeRadius} color="#334155" />
+                      <HandrailTube points={innerPoints.map(p => new THREE.Vector3(p.x + (p.z > W ? ex * 300 : 0), p.y, p.z + (p.z <= W ? ex * 300 : 0)))} radius={tubeRadius} color="#94a3b8" />
                     </>
                   )}
 
                   {/* Inner Landing Guardrail */}
                   {showGuardrail && (
                     <group position={[0, 0, 0]}>
-                      <Box args={[16, handrailHeight, 16]} position={[f1P + postSize/2, f1H + h + handrailHeight/2, W - postSize/2 + ex * 300]}>
-                        <meshStandardMaterial color="#334155" />
-                        <Edges scale={1} threshold={15} color="#1e293b" />
+                      <Box args={[postSize, handrailHeight, postSize]} position={[f1P + postSize/2, f1H + h + handrailHeight/2, W - postSize/2 + ex * 300]}>
+                        <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
+                        <Edges scale={1} threshold={15} color="#94a3b8" />
                       </Box>
                     </group>
                   )}
@@ -2423,14 +2400,14 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         const z = 40 + (i / 3) * (R - 80);
                         return (
                           <mesh key={`right-${i}`} position={[R - 40, 500, z]}>
-                            <boxGeometry args={[16, 1000, 16]} />
-                            <meshStandardMaterial color="#334155" />
+                            <boxGeometry args={[40, 1000, 40]} />
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
                           </mesh>
                         );
                       })}
                       <mesh position={[R - 40, 1000, R / 2]} rotation={[Math.PI / 2, 0, 0]}>
-                        <boxGeometry args={[24, R, 24]} />
-                        <meshStandardMaterial color="#334155" />
+                        <boxGeometry args={[30, R, 30]} />
+                        <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
                       </mesh>
 
                       {/* Left side (x = 40) */}
@@ -2438,14 +2415,14 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         const z = tubeRadius + 40 + (i / 3) * (R - tubeRadius - 80);
                         return (
                           <mesh key={`left-${i}`} position={[40, 500, z]}>
-                            <boxGeometry args={[16, 1000, 16]} />
-                            <meshStandardMaterial color="#334155" />
+                            <boxGeometry args={[40, 1000, 40]} />
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
                           </mesh>
                         );
                       })}
                       <mesh position={[40, 1000, tubeRadius + (R - tubeRadius) / 2]} rotation={[Math.PI / 2, 0, 0]}>
-                        <boxGeometry args={[24, R - tubeRadius, 24]} />
-                        <meshStandardMaterial color="#334155" />
+                        <boxGeometry args={[30, R - tubeRadius, 30]} />
+                        <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
                       </mesh>
                     </>
                   ) : (
@@ -2455,14 +2432,14 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         const x = tubeRadius + 40 + (i / 3) * (R - tubeRadius - 80);
                         return (
                           <mesh key={`right-${i}`} position={[x, 500, 40]}>
-                            <boxGeometry args={[16, 1000, 16]} />
-                            <meshStandardMaterial color="#334155" />
+                            <boxGeometry args={[40, 1000, 40]} />
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
                           </mesh>
                         );
                       })}
                       <mesh position={[tubeRadius + (R - tubeRadius) / 2, 1000, 40]} rotation={[0, 0, Math.PI / 2]}>
-                        <boxGeometry args={[24, R - tubeRadius, 24]} />
-                        <meshStandardMaterial color="#334155" />
+                        <boxGeometry args={[30, R - tubeRadius, 30]} />
+                        <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
                       </mesh>
 
                       {/* Left side (z = R - 40) */}
@@ -2470,14 +2447,16 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         const x = 40 + (i / 3) * (R - 80);
                         return (
                           <mesh key={`left-${i}`} position={[x, 500, R - 40]}>
-                            <boxGeometry args={[16, 1000, 16]} />
-                            <meshStandardMaterial color="#334155" />
+                            <boxGeometry args={[40, 1000, 40]} />
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />   <mesh key={`left-${i}`} position={[x, 500, R - 40]}>
+                            <boxGeometry args={[40, 1000, 40]} />
+                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
                           </mesh>
                         );
                       })}
                       <mesh position={[R / 2, 1000, R - 40]} rotation={[0, 0, Math.PI / 2]}>
-                        <boxGeometry args={[24, R, 24]} />
-                        <meshStandardMaterial color="#334155" />
+                        <boxGeometry args={[30, R, 30]} />
+                        <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
                       </mesh>
                     </>
                   )}
@@ -2522,12 +2501,12 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                           const balusterHeight = handrailY - stepY;
                           return (
                             <mesh key={`baluster-${i}`} position={[
-                              handrailR * Math.cos(localAngle), 
+                              handrailR * Math.cos(localAngle),
                               balusterHeight / 2,
                               -handrailR * Math.sin(localAngle)
                             ]}>
-                              <boxGeometry args={[postSize, handrailHeight, postSize]} />
-                              <meshStandardMaterial color="#334155" />
+                              <boxGeometry args={[40, balusterHeight, 40]} />
+                              <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
                             </mesh>
                           );
                         })}
@@ -2544,16 +2523,16 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                   new THREE.Shape().moveTo(-12, -12).lineTo(12, -12).lineTo(12, 12).lineTo(-12, 12).lineTo(-12, -12),
                   { steps: 128, bevelEnabled: false, extrudePath: handrailCurve }
                 ]} />
-                <meshStandardMaterial color="#334155" metalness={0.8} roughness={0.2} />
+                <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
               </mesh>
-              {/* End caps (Colete Belser style) */}
+              {/* End caps */}
               <mesh position={handrailCurve.points[0]}>
                 <sphereGeometry args={[15, 16, 16]} />
-                <meshStandardMaterial color="#334155" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
               </mesh>
               <mesh position={handrailCurve.points[handrailCurve.points.length - 1]}>
                 <sphereGeometry args={[15, 16, 16]} />
-                <meshStandardMaterial color="#334155" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.1} />
               </mesh>
             </group>
           )}
@@ -2570,7 +2549,7 @@ const HeadroomWarning = ({ stepsUnderLanding }: { stepsUnderLanding: { step: num
     <div className={`mb-6 p-4 border rounded-lg text-sm font-medium ${hasUnsafe ? 'bg-red-50 border-red-200 text-red-700' : 'bg-amber-50 border-amber-200 text-amber-800'}`}>
       <h4 className="font-bold mb-2 flex items-center gap-2">
         <AlertTriangle size={20} />
-        {hasUnsafe ? 'Atenção: Risco de bater a cabeça!' : 'Pé-direito sob o patamar:'}
+        {hasUnsafe ? 'AtenÃ§Ã£o: Risco de bater a cabeÃ§a!' : 'PÃ©-direito sob o patamar:'}
       </h4>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         {stepsUnderLanding.map(({ step, headroom }) => (
@@ -2621,23 +2600,24 @@ const LandingCalc = ({ onBack, onNext }: any) => {
 
   return (
     <CalculatorLayout 
-      title="Escada Reta (Com Patamar)" onBack={onBack} config={config}      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'landing', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: landingL, landingW: W }, '*')}
+      title="Escada Reta (Com Patamar)" onBack={onBack} config={config}
+      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'landing', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: landingL, landingW: W }, '*')}
       salesKit={
         <WizardNextButton onNext={() => onNext(config, { H, L: effectiveL, W, landingL, L1: 0, L2: 0, D: 0 })} />
       }
       extraSection={
         <div className="space-y-6">
-          <h2 className="text-xl font-bold mb-4 flex items-center gap-2 border-b pb-4">Configuração do Patamar</h2>
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2 border-b pb-4">ConfiguraÃ§Ã£o do Patamar</h2>
           <ThermometerSlider 
-            label="Posição do Patamar (Degrau)" 
+            label="PosiÃ§Ã£o do Patamar (Degrau)" 
             value={actualLandingStep} 
             min={1} 
             max={config.steps - 1} 
             step={1}
             onChange={(val: number) => setLandingStep(val)} 
             gradient="linear-gradient(to right, #e2e8f0, #94a3b8)" 
-            unit="º degrau" 
-            tooltip="Escolha em qual degrau o patamar será posicionado. Para colocar no final (próximo à porta de cima), arraste para o valor máximo."
+            unit="Âº degrau" 
+            tooltip="Escolha em qual degrau o patamar serÃ¡ posicionado. Para colocar no final (prÃ³ximo Ã  porta de cima), arraste para o valor mÃ¡ximo."
           />
           {stepsUnderLanding.length > 0 && <HeadroomWarning stepsUnderLanding={stepsUnderLanding} />}
         </div>
@@ -2654,7 +2634,7 @@ const LandingCalc = ({ onBack, onNext }: any) => {
             onChange={setH} 
             gradient={getGradient('height', effectiveL, topStepFlush)} 
             unit="mm" 
-            tooltip="Altura total do piso inferior ao piso superior. O termômetro indica se a altura é confortável para o comprimento atual."
+            tooltip="Altura total do piso inferior ao piso superior. O termÃ´metro indica se a altura Ã© confortÃ¡vel para o comprimento atual."
           />
           <ThermometerSlider 
             label="Comprimento Total" 
@@ -2664,7 +2644,7 @@ const LandingCalc = ({ onBack, onNext }: any) => {
             onChange={setL} 
             gradient="linear-gradient(to right, #e2e8f0, #94a3b8)" 
             unit="mm" 
-            tooltip="Espaço horizontal total disponível para a escada, incluindo o patamar."
+            tooltip="EspaÃ§o horizontal total disponÃ­vel para a escada, incluindo o patamar."
           />
           <ThermometerSlider 
             label="Largura da Escada" 
@@ -2674,7 +2654,7 @@ const LandingCalc = ({ onBack, onNext }: any) => {
             onChange={setW} 
             gradient="linear-gradient(to right, #e2e8f0, #94a3b8)" 
             unit="mm" 
-            tooltip="Largura dos degraus e do patamar. Recomendado mínimo de 800mm."
+            tooltip="Largura dos degraus e do patamar. Recomendado mÃ­nimo de 800mm."
           />
           <ThermometerSlider 
             label="Comprimento do Patamar" 
@@ -2710,9 +2690,9 @@ const LandingCalc = ({ onBack, onNext }: any) => {
               <button
                 onClick={() => setShowHandrail(!showHandrail)}
                 className={`px-4 py-2 text-sm font-bold rounded-md flex items-center gap-2 transition-all border ${showHandrail ? 'bg-blue-100 text-blue-700 border-blue-200 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
-                title={showHandrail ? 'Ocultar Corrimão' : 'Mostrar Corrimão'}
+                title={showHandrail ? 'Ocultar CorrimÃ£o' : 'Mostrar CorrimÃ£o'}
               >
-                {showHandrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} Corrimão
+                {showHandrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} CorrimÃ£o
               </button>
               <button
                 onClick={() => setShowGuardrail(!showGuardrail)}
@@ -2770,15 +2750,16 @@ const LShapeCalc = ({ onBack, onNext }: any) => {
 
   return (
     <CalculatorLayout 
-      title="Escada em L (Com Patamar)" onBack={onBack} config={config}      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'lshape', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: W, landingW: W }, '*')}
+      title="Escada em L (Com Patamar)" onBack={onBack} config={config}
+      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'lshape', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: W, landingW: W }, '*')}
       salesKit={
         <WizardNextButton onNext={() => onNext(config, { H, L: 0, W, L1, L2, D: 0, landingL: W })} />
       }
       extraSection={
         <div className="space-y-6">
-          <h2 className="text-xl font-bold mb-4 flex items-center gap-2 border-b pb-4">Configuração do Patamar</h2>
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2 border-b pb-4">ConfiguraÃ§Ã£o do Patamar</h2>
           <div className="p-4 bg-slate-100 border border-slate-200 rounded-lg mb-6">
-            <p className="text-slate-600">Patamar posicionado no <strong>{steps1 + 1}º degrau</strong> (após o Lance 1).</p>
+            <p className="text-slate-600">Patamar posicionado no <strong>{steps1 + 1}Âº degrau</strong> (apÃ³s o Lance 1).</p>
           </div>
           {stepsUnderLanding.length > 0 && <HeadroomWarning stepsUnderLanding={stepsUnderLanding} />}
         </div>
@@ -2795,10 +2776,10 @@ const LShapeCalc = ({ onBack, onNext }: any) => {
             onChange={setH} 
             gradient={getGradient('height', effectiveL, topStepFlush)} 
             unit="mm" 
-            tooltip="Altura total do piso inferior ao piso superior. O termômetro indica se a altura é confortável para o comprimento atual."
+            tooltip="Altura total do piso inferior ao piso superior. O termÃ´metro indica se a altura Ã© confortÃ¡vel para o comprimento atual."
           />
           <ThermometerSlider 
-            label="Lance 1 (Até o patamar)" 
+            label="Lance 1 (AtÃ© o patamar)" 
             value={L1} 
             min={1000} 
             max={5000} 
@@ -2808,14 +2789,14 @@ const LShapeCalc = ({ onBack, onNext }: any) => {
             tooltip="Comprimento do primeiro lance de escada, antes da curva."
           />
           <ThermometerSlider 
-            label="Lance 2 (Após o patamar)" 
+            label="Lance 2 (ApÃ³s o patamar)" 
             value={L2} 
             min={1000} 
             max={5000} 
             onChange={setL2} 
             gradient="linear-gradient(to right, #e2e8f0, #94a3b8)" 
             unit="mm" 
-            tooltip="Comprimento do segundo lance de escada, após a curva."
+            tooltip="Comprimento do segundo lance de escada, apÃ³s a curva."
           />
           <ThermometerSlider 
             label="Largura da Escada" 
@@ -2825,7 +2806,7 @@ const LShapeCalc = ({ onBack, onNext }: any) => {
             onChange={setW} 
             gradient="linear-gradient(to right, #e2e8f0, #94a3b8)" 
             unit="mm" 
-            tooltip="Largura dos degraus. O patamar de canto terá essa mesma medida (Largura x Largura)."
+            tooltip="Largura dos degraus. O patamar de canto terÃ¡ essa mesma medida (Largura x Largura)."
           />
         </>
       }
@@ -2851,9 +2832,9 @@ const LShapeCalc = ({ onBack, onNext }: any) => {
               <button
                 onClick={() => setShowHandrail(!showHandrail)}
                 className={`px-4 py-2 text-sm font-bold rounded-md flex items-center gap-2 transition-all border ${showHandrail ? 'bg-blue-100 text-blue-700 border-blue-200 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
-                title={showHandrail ? 'Ocultar Corrimão' : 'Mostrar Corrimão'}
+                title={showHandrail ? 'Ocultar CorrimÃ£o' : 'Mostrar CorrimÃ£o'}
               >
-                {showHandrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} Corrimão
+                {showHandrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} CorrimÃ£o
               </button>
               <button
                 onClick={() => setShowGuardrail(!showGuardrail)}
@@ -2884,7 +2865,7 @@ const LShapeCalc = ({ onBack, onNext }: any) => {
 const SpiralCalc = ({ onBack, onNext }: any) => {
   const [H, setH] = useState(2800);
   const [D, setD] = useState(1500);
-  const [tubeD, setTubeD] = useState(4); // 4 polegadas padrão
+  const [tubeD, setTubeD] = useState(4); // 4 polegadas padrÃ£o
   const [topStepFlush, setTopStepFlush] = useState(false);
   const [direction, setDirection] = useState<'clockwise' | 'counter-clockwise'>('clockwise');
   const [viewMode, setViewMode] = useState<'2d' | '3d'>('3d');
@@ -2942,37 +2923,38 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
 
   return (
     <CalculatorLayout 
-      title="Escada Caracol" onBack={onBack} config={config}      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'spiral', steps: config.steps, h: config.h, p: config.p, w: D, blondel: config.blondel, landingL: 0, landingW: 0 }, '*')}
+      title="Escada Caracol" onBack={onBack} config={config}
+      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'spiral', steps: config.steps, h: config.h, p: config.p, w: D, blondel: config.blondel, landingL: 0, landingW: 0 }, '*')}
       salesKit={
         <WizardNextButton onNext={() => onNext({ steps: totalSteps, treads: totalSteps, h, p, blondel: 2*h+p }, { H, L: 0, W: D, D, L1: 0, L2: 0, landingL: 0, tubeD })} />
       }
       extraSection={
         <div className="space-y-6">
-          <h2 className="text-xl font-bold mb-4 flex items-center gap-2 border-b pb-4">Configuração do Patamar e Pé-direito</h2>
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2 border-b pb-4">ConfiguraÃ§Ã£o do Patamar e PÃ©-direito</h2>
           
           {!isValidConnection && (
             <div className="p-4 bg-red-50 border border-red-200 rounded-lg mb-6 text-red-800">
               <h4 className="font-bold mb-2 flex items-center gap-2">
                 <AlertTriangle size={20} />
-                Conexão Inválida
+                ConexÃ£o InvÃ¡lida
               </h4>
               <p className="text-sm">
-                A quantidade de degraus e o ângulo de início não se alinham com o patamar escolhido. 
-                Ajuste o número de degraus, o ângulo de início ou a posição do patamar para que a escada se conecte corretamente.
+                A quantidade de degraus e o Ã¢ngulo de inÃ­cio nÃ£o se alinham com o patamar escolhido. 
+                Ajuste o nÃºmero de degraus, o Ã¢ngulo de inÃ­cio ou a posiÃ§Ã£o do patamar para que a escada se conecte corretamente.
               </p>
             </div>
           )}
 
           <div className="p-4 bg-slate-100 border border-slate-200 rounded-lg mb-6">
-            <h4 className="font-bold text-slate-700 mb-1">Patamar de Saída</h4>
-            <p className="text-slate-600">O patamar de saída (90º) está posicionado após o <strong>{steps}º degrau</strong>, no nível superior.</p>
+            <h4 className="font-bold text-slate-700 mb-1">Patamar de SaÃ­da</h4>
+            <p className="text-slate-600">O patamar de saÃ­da (90Âº) estÃ¡ posicionado apÃ³s o <strong>{steps}Âº degrau</strong>, no nÃ­vel superior.</p>
           </div>
 
           {stepsUnderCeiling.length > 0 && (
             <div className={`p-4 border rounded-lg text-sm font-medium ${hasUnsafe ? 'bg-red-50 border-red-200 text-red-700' : 'bg-amber-50 border-amber-200 text-amber-800'}`}>
               <h4 className="font-bold mb-3 flex items-center gap-2">
                 <AlertTriangle size={20} />
-                {hasUnsafe ? 'Atenção: Risco de bater a cabeça em alguns degraus!' : 'Pé-direito livre nos degraus sobrepostos:'}
+                {hasUnsafe ? 'AtenÃ§Ã£o: Risco de bater a cabeÃ§a em alguns degraus!' : 'PÃ©-direito livre nos degraus sobrepostos:'}
               </h4>
               
               <div className="mb-2 text-xs opacity-80">Degraus sob outros degraus:</div>
@@ -2987,7 +2969,7 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
                 )}
               </div>
 
-              <div className="mb-2 text-xs opacity-80">Degraus sob o patamar de saída:</div>
+              <div className="mb-2 text-xs opacity-80">Degraus sob o patamar de saÃ­da:</div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {stepsUnderCeiling.filter(s => s.isLanding).map(({ step, headroom }) => (
                   <div key={step} className={`p-2 rounded border ${headroom < 2000 ? 'bg-red-100 border-red-200 text-red-800' : 'bg-white border-slate-200 text-slate-700'}`}>
@@ -3029,21 +3011,21 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
             onChange={(val: number) => { setH(val); setManualSteps(null); }} 
             gradient={getSpiralGradient('height', D, topStepFlush)} 
             unit="mm" 
-            tooltip="Altura total do piso inferior ao piso superior. O termômetro indica se a altura é confortável para o diâmetro atual."
+            tooltip="Altura total do piso inferior ao piso superior. O termÃ´metro indica se a altura Ã© confortÃ¡vel para o diÃ¢metro atual."
           />
           <ThermometerSlider 
-            label="Diâmetro Externo" 
+            label="DiÃ¢metro Externo" 
             value={D} 
             min={1100} 
             max={3000} 
             onChange={setD} 
             gradient={getSpiralGradient('diameter', H, topStepFlush)} 
             unit="mm" 
-            tooltip="Diâmetro total da escada caracol. O termômetro indica se o diâmetro oferece uma pisada confortável na linha de trânsito."
+            tooltip="DiÃ¢metro total da escada caracol. O termÃ´metro indica se o diÃ¢metro oferece uma pisada confortÃ¡vel na linha de trÃ¢nsito."
           />
           <div className="mb-6 relative">
             <ThermometerSlider 
-              label="Número de Degraus" 
+              label="NÃºmero de Degraus" 
               value={totalSteps} 
               min={Math.max(5, Math.floor(H / 300))} 
               max={Math.ceil(H / 100)} 
@@ -3051,7 +3033,7 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
               onChange={(val: number) => setManualSteps(val)} 
               gradient="linear-gradient(to right, #e2e8f0, #94a3b8)" 
               unit="degraus" 
-              tooltip="Número total de degraus. Altere para ajustar a altura de cada degrau (espelho)."
+              tooltip="NÃºmero total de degraus. Altere para ajustar a altura de cada degrau (espelho)."
             />
             {manualSteps !== null && (
               <button 
@@ -3064,7 +3046,7 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
           </div>
           <div className="mb-8">
             <label className="font-semibold text-slate-700 flex items-center gap-2 mb-3">
-              Diâmetro do Tubo Central (pol)
+              DiÃ¢metro do Tubo Central (pol)
             </label>
             <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200">
               {[3, 4, 5].map((size) => (
@@ -3080,7 +3062,7 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
           </div>
           <div className="mb-8 space-y-3">
             <label className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-300 transition-colors">
-              <span className="font-semibold text-slate-700">Incluir Corrimão</span>
+              <span className="font-semibold text-slate-700">Incluir CorrimÃ£o</span>
               <input type="checkbox" checked={showHandrail} onChange={(e) => setShowHandrail(e.target.checked)} className="w-5 h-5 text-blue-600" />
             </label>
             <label className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-300 transition-colors">
@@ -3112,13 +3094,13 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
               <button
                 onClick={() => setShowHandrail(!showHandrail)}
                 className={`px-4 py-2 text-sm font-bold rounded-md flex items-center gap-2 transition-all border ${showHandrail ? 'bg-blue-100 text-blue-700 border-blue-200 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
-                title={showHandrail ? 'Ocultar Corrimão' : 'Mostrar Corrimão'}
+                title={showHandrail ? 'Ocultar CorrimÃ£o' : 'Mostrar CorrimÃ£o'}
               >
-                {showHandrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} Corrimão
+                {showHandrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} CorrimÃ£o
               </button>
               <button
                 onClick={() => setShowGuardrail(!showGuardrail)}
-                className={`px-4 py-2 text-sm font-bold rounded-md flex items-center gap-2 transition-all border ${showGuardrail ? 'bg-blue-100 text-blue-700 border-blue-200 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
+                className={`px-4 py-2 text-sm font-bold rounded-md flex items-center gap-2 transition-all border ${showGuardrail ? 'bg-blue-100 text-blue-700 border-blue-200 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bs-slate-50'}`}
                 title={showGuardrail ? 'Ocultar Guarda-corpo' : 'Mostrar Guarda-corpo'}
               >
                 {showGuardrail ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />} Guarda-corpo
@@ -3153,7 +3135,7 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
 };
 
 // ============================================================
-// MAIN APP — WIZARD DE COMPRA
+// MAIN APP â WIZARD DE COMPRA
 // ============================================================
 
 export default function App() {
@@ -3212,7 +3194,7 @@ export default function App() {
   const price = useMemo(calcPrice, [savedConfig, savedDims, stairType]);
 
   const options = [
-    { id: 'straight' as StairType, title: 'Escada Reta', desc: 'Um único lance contínuo, sem patamar.', icon: TrendingUp, color: 'text-blue-600', bg: 'bg-blue-50', border: 'hover:border-blue-500' },
+    { id: 'straight' as StairType, title: 'Escada Reta', desc: 'Um Ãºnico lance contÃ­nuo, sem patamar.', icon: TrendingUp, color: 'text-blue-600', bg: 'bg-blue-50', border: 'hover:border-blue-500' },
     { id: 'landing' as StairType, title: 'Com Patamar', desc: 'Escada reta com um patamar de descanso.', icon: SplitSquareHorizontal, color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'hover:border-emerald-500' },
     { id: 'lshape' as StairType, title: 'Em L ou U', desc: 'Dois lances com patamar em canto.', icon: CornerUpRight, color: 'text-violet-600', bg: 'bg-violet-50', border: 'hover:border-violet-500' },
     { id: 'spiral' as StairType, title: 'Caracol', desc: 'Escada circular com eixo central.', icon: RotateCcw, color: 'text-orange-600', bg: 'bg-orange-50', border: 'hover:border-orange-500' },
@@ -3234,9 +3216,9 @@ export default function App() {
               <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight">Calculadora de Escadas</h1>
               <p className="text-slate-500 text-lg max-w-xl mx-auto">Selecione o modelo e calcule sua escada sob medida em minutos.</p>
               <div className="flex items-center justify-center gap-6 mt-4 text-sm text-slate-400">
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-green-500" /> Visualização 3D</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-green-500" /> Cálculo automático</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-green-500" /> Preço instantâneo</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-green-500" /> VisualizaÃ§Ã£o 3D</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-green-500" /> CÃ¡lculo automÃ¡tico</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-green-500" /> PreÃ§o instantÃ¢neo</span>
               </div>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
@@ -3257,13 +3239,13 @@ export default function App() {
               ))}
             </div>
             <p className="text-center text-xs text-slate-400 mt-8">
-              CDS Industrial · Fabricação de Escadas em Aço · <a href="https://cdsind.com.br" className="hover:text-blue-600 transition-colors">cdsind.com.br</a>
+              CDS Industrial Â· FabricaÃ§Ã£o de Escadas em AÃ§o Â· <a href="https://cdsind.com.br" className="hover:text-blue-600 transition-colors">cdsind.com.br</a>
             </p>
           </div>
         </div>
       )}
 
-      {/* ---- PASSO 2: Medidas + Visualização ---- */}
+      {/* ---- PASSO 2: Medidas + VisualizaÃ§Ã£o ---- */}
       {wizardStep === 2 && stairType && (
         <div className="p-4 md:p-8">
           {stairType === 'straight' && (
@@ -3290,7 +3272,7 @@ export default function App() {
         />
       )}
 
-      {/* ---- PASSO 4: Orçamento + Carrinho ---- */}
+      {/* ---- PASSO 4: OrÃ§amento + Carrinho ---- */}
       {wizardStep === 4 && savedConfig && leadData && (
         <StepOrcamento
           stairType={stairType!}
