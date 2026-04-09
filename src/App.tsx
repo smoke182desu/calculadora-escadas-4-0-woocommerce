@@ -854,7 +854,7 @@ const TopStepToggle = ({ value, onChange }: { value: boolean, onChange: (val: bo
   </div>
 );
 
-const CalculatorLayout = ({ title, onBack, config, inputs, visualizer, headerActions, details, extraSection, materialsSection, salesKit }: any) => {
+const CalculatorLayout = ({ title, onBack, config, inputs, visualizer, headerActions, details, extraSection, materialsSection, salesKit, onBuyNow }: any) => {
   const handleSavePDF = () => {
     const element = document.getElementById('calculator-content');
     const opt = {
@@ -945,7 +945,7 @@ const CalculatorLayout = ({ title, onBack, config, inputs, visualizer, headerAct
               <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Visualização Geral</h3>
               {headerActions}
             </div>
-            {visualizer}
+            {onBuyNow && (<button onClick={onBuyNow} className="w-full mb-4 py-3 bg-green-500 hover:bg-green-600 active:bg-green-700 text-white font-bold text-lg rounded-xl shadow-md flex items-center justify-center gap-2 transition-colors">🛒  COMPRAR AGORA</button>)}{visualizer}
           </div>
         </div>
       </div>
@@ -1490,7 +1490,7 @@ const StraightCalc = ({ onBack, onNext }: any) => {
 
   return (
     <CalculatorLayout 
-      title="Escada Reta (Sem Patamar)" onBack={onBack} config={config}
+      title="Escada Reta (Sem Patamar)" onBack={onBack} config={config}      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'straight', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: 0, landingW: 0 }, '*')}
       salesKit={
         <WizardNextButton onNext={() => onNext(config, { H, L, W, L1: 0, L2: 0, D: 0 })} />
       }
@@ -2621,7 +2621,7 @@ const LandingCalc = ({ onBack, onNext }: any) => {
 
   return (
     <CalculatorLayout 
-      title="Escada Reta (Com Patamar)" onBack={onBack} config={config}
+      title="Escada Reta (Com Patamar)" onBack={onBack} config={config}      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'landing', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: landingL, landingW: W }, '*')}
       salesKit={
         <WizardNextButton onNext={() => onNext(config, { H, L: effectiveL, W, landingL, L1: 0, L2: 0, D: 0 })} />
       }
@@ -2770,7 +2770,7 @@ const LShapeCalc = ({ onBack, onNext }: any) => {
 
   return (
     <CalculatorLayout 
-      title="Escada em L (Com Patamar)" onBack={onBack} config={config}
+      title="Escada em L (Com Patamar)" onBack={onBack} config={config}      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'lshape', steps: config.steps, h: config.h, p: config.p, w: W, blondel: config.blondel, landingL: W, landingW: W }, '*')}
       salesKit={
         <WizardNextButton onNext={() => onNext(config, { H, L: 0, W, L1, L2, D: 0, landingL: W })} />
       }
@@ -2942,7 +2942,7 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
 
   return (
     <CalculatorLayout 
-      title="Escada Caracol" onBack={onBack} config={config}
+      title="Escada Caracol" onBack={onBack} config={config}      onBuyNow={() => window.parent.postMessage({ type: 'cds_add_to_cart', stairType: 'spiral', steps: config.steps, h: config.h, p: config.p, w: D, blondel: config.blondel, landingL: 0, landingW: 0 }, '*')}
       salesKit={
         <WizardNextButton onNext={() => onNext({ steps: totalSteps, treads: totalSteps, h, p, blondel: 2*h+p }, { H, L: 0, W: D, D, L1: 0, L2: 0, landingL: 0, tubeD })} />
       }
