@@ -2448,8 +2448,6 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
                         return (
                           <mesh key={`left-${i}`} position={[x, 500, R - 40]}>
                             <boxGeometry args={[40, 1000, 40]} />
-                            <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />   <mesh key={`left-${i}`} position={[x, 500, R - 40]}>
-                            <boxGeometry args={[40, 1000, 40]} />
                             <meshStandardMaterial color="#cbd5e1" metalness={0.9} roughness={0.1} />
                           </mesh>
                         );
