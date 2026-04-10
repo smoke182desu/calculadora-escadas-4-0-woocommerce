@@ -3159,6 +3159,8 @@ export default function App() {
     try {
       await fetch(`${SITE_URL}/wp-json/cds/v1/lead`, {
         method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nome: data.nome,
@@ -3170,7 +3172,9 @@ export default function App() {
           valor: calcPrice(),
         }),
       });
-    } catch (_) { /* silently continue */ }
+    } catch (err) {
+      console.warn('[CDS Lead] Falha ao enviar lead:', err);
+    }
     setLeadData(data);
     setIsSubmitting(false);
     setWizardStep(4);
