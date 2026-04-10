@@ -7,7 +7,7 @@ import {
   Calculator, Info, Layers, ArrowUpDown, ArrowRightLeft, CheckCircle2, 
   AlertTriangle, XCircle, Printer, Minus, Plus, Box as BoxIcon, Image as ImageIcon, 
   ArrowLeft, TrendingUp, SplitSquareHorizontal, CornerUpRight, RotateCcw, Download,
-  Package, Layers as LayersIcon, Eye as EyeIcon, EyeOff as EyeOffIcon
+  Package, Layers as LayersIcon, Eye as EyeIcon, EyeOff as EyeOffIcon, Loader
 } from 'lucide-react';
 
 const getDiamondPlateTexture = () => {
@@ -1205,7 +1205,31 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
     ? `Caracol · H${savedDims.H}mm · Ø${savedDims.D}mm · ${savedConfig?.steps || ''}°`
     : `${modelo} · H${savedDims.H}mm · L${savedDims.L || (savedDims.L1 ? `${savedDims.L1}+${savedDims.L2}` : 0)}mm · W${savedDims.W}mm`;
 
-  const handleAddToCart = () => {
+  const [isRedirecting, setIsRedirecting] = React.useState(false);
+
+  const handleAddToCart = async () => {
+    setIsRedirecting(true);
+
+    try {
+      await fetch(`${SITE_URL}/wp-json/cds/v1/lead`, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: leadData.nome,
+          email: leadData.email,
+          telefone: leadData.telefone,
+          tipo: stairType,
+          config: JSON.stringify(savedConfig),
+          dims: JSON.stringify(savedDims),
+          valor: price,
+        }),
+      });
+    } catch (err) {
+      console.warn('[CDS Lead] Falha ao enviar lead no checkout:', err);
+    }
+
     const params = new URLSearchParams({
       cds_escada: '1',
       modelo,
@@ -1276,9 +1300,14 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
         <div className="space-y-3">
           <button
             onClick={handleAddToCart}
-            className="w-full py-5 bg-green-500 hover:bg-green-400 text-white font-black text-xl rounded-2xl transition-all shadow-xl shadow-green-500/30 hover:shadow-2xl active:scale-[0.98] flex items-center justify-center gap-3"
+            disabled={isRedirecting}
+            className={`w-full py-5 text-white font-black text-xl rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 ${isRedirecting ? 'bg-slate-400 cursor-not-allowed shadow-none' : 'bg-green-500 hover:bg-green-400 shadow-green-500/30 hover:shadow-2xl active:scale-[0.98]'}`}
           >
-            🛒 Finalizar Pedido no Carrinho
+            {isRedirecting ? (
+              <Loader className="w-6 h-6 animate-spin" />
+            ) : (
+              '🛒 Finalizar Pedido no Carrinho'
+            )}
           </button>
           <div className="grid grid-cols-2 gap-3">
             <button
@@ -3154,31 +3183,15 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleLeadSubmit = async (data: LeadData) => {
+  const handleLeadSubmit = (data: LeadData) => {
     setIsSubmitting(true);
-    try {
-      await fetch(`${SITE_URL}/wp-json/cds/v1/lead`, {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'omit',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nome: data.nome,
-          email: data.email,
-          telefone: data.telefone,
-          tipo: stairType,
-          config: JSON.stringify(savedConfig),
-          dims: JSON.stringify(savedDims),
-          valor: calcPrice(),
-        }),
-      });
-    } catch (err) {
-      console.warn('[CDS Lead] Falha ao enviar lead:', err);
-    }
-    setLeadData(data);
-    setIsSubmitting(false);
-    setWizardStep(4);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Pequeno delay para feedback visual sem fazer requisição externa ainda
+    setTimeout(() => {
+      setLeadData(data);
+      setIsSubmitting(false);
+      setWizardStep(4);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 600);
   };
 
   const calcPrice = () => {
