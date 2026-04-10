@@ -1127,10 +1127,17 @@ const StepDados = ({ onBack, onSubmit, isSubmitting }: {
             <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 rounded-2xl mb-3">
               <Calculator className="text-white w-7 h-7" />
             </div>
-            <h2 className="text-2xl font-black text-white">Quase lá!</h2>
-            <p className="text-blue-100 mt-1 text-sm">Preencha seus dados para receber o orçamento da sua escada.</p>
+            <h2 className="text-2xl font-black text-white">Quase lá! 🎉</h2>
           </div>
-          <div className="p-8">
+          <div className="px-8 pt-6 pb-2">
+            <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-xl flex items-start gap-3">
+              <CheckCircle2 className="text-emerald-500 w-5 h-5 flex-shrink-0 mt-0.5" />
+              <p className="text-emerald-800 text-sm font-medium">
+                Seu projeto 3D está <strong>99% pronto</strong>. Para processar o cálculo estrutural definitivo e embutir os valores de fabricação na próxima tela, libere seu acesso preenchendo os dados abaixo:
+              </p>
+            </div>
+          </div>
+          <div className="px-8 pb-8 pt-2">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-1.5">Nome completo *</label>
@@ -1312,7 +1319,14 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
               '🛒 Finalizar Pedido no Carrinho'
             )}
           </button>
-          <div className="grid grid-cols-2 gap-3">
+          
+          <div className="flex items-center justify-center gap-4 py-3 text-slate-400 text-xs">
+            <span className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-500" /> Pagamento Seguro</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-500" /> Venda Direta de Indústria</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-500" /> Entrega Segura</span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 mt-2">
             <button
               onClick={onBack}
               className="py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all text-sm border border-white/10"

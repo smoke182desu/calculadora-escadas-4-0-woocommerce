@@ -418,3 +418,72 @@ add_action('init', function () {
         exit;
     }
 });
+
+// ============================================================
+// 6. INTEGRAÇÃO WOOCOMMERCE: PREENCHIMENTO AUTOMÁTICO DE CHECKOUT E PREÇO DO CARRINHO
+// ============================================================
+
+// 6.1 Capturar os parâmetros da URL na sessão do WooCommerce
+add_action('wp', 'cds_capture_url_params_to_session');
+function cds_capture_url_params_to_session() {
+    if (isset($_GET['cds_escada']) && class_exists('WooCommerce') && WC()->session) {
+        WC()->session->set('cds_modelo', sanitize_text_field($_GET['modelo']));
+        WC()->session->set('cds_valor', floatval($_GET['valor']));
+        WC()->session->set('cds_desc', sanitize_text_field($_GET['desc']));
+        WC()->session->set('cds_nome', sanitize_text_field($_GET['nome']));
+        WC()->session->set('cds_email', sanitize_email($_GET['email']));
+        WC()->session->set('cds_tel', sanitize_text_field($_GET['tel']));
+    }
+}
+
+// 6.2 Preencher automaticamente os campos de faturamento no Checkout
+add_filter('woocommerce_checkout_get_value', 'cds_autofill_checkout_fields', 10, 2);
+function cds_autofill_checkout_fields($value, $input) {
+    if (class_exists('WooCommerce') && WC()->session) {
+        if ($input === 'billing_first_name' && WC()->session->get('cds_nome')) {
+            $nome_parts = explode(' ', WC()->session->get('cds_nome'), 2);
+            return $nome_parts[0];
+        }
+        if ($input === 'billing_last_name' && WC()->session->get('cds_nome')) {
+            $nome_parts = explode(' ', WC()->session->get('cds_nome'), 2);
+            return isset($nome_parts[1]) ? $nome_parts[1] : '';
+        }
+        if ($input === 'billing_email' && WC()->session->get('cds_email')) {
+            return WC()->session->get('cds_email');
+        }
+        if ($input === 'billing_phone' && WC()->session->get('cds_tel')) {
+            return WC()->session->get('cds_tel');
+        }
+    }
+    return $value;
+}
+
+// 6.3 Alterar nome e preço da Escada no carrinho da calculadora
+add_action('woocommerce_before_calculate_totals', 'cds_update_cart_price_dynamically', 10, 1);
+function cds_update_cart_price_dynamically($cart) {
+    if (is_admin() && !defined('DOING_AJAX')) return;
+    
+    if (class_exists('WooCommerce') && WC()->session) {
+        $custom_price = WC()->session->get('cds_valor');
+        if ($custom_price && $custom_price > 0) {
+            foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+                // Se o produto tiver "escada" no nome, aplica o preço do calculador
+                if (strpos(strtolower($cart_item['data']->get_name()), 'escada') !== false) {
+                    $cart_item['data']->set_price($custom_price);
+                }
+            }
+        }
+    }
+}
+
+add_filter('woocommerce_cart_item_name', 'cds_update_cart_item_name', 10, 3);
+function cds_update_cart_item_name($name, $cart_item, $cart_item_key) {
+    if (class_exists('WooCommerce') && WC()->session) {
+        $custom_desc = WC()->session->get('cds_desc');
+        $custom_modelo = WC()->session->get('cds_modelo');
+        if ($custom_desc && strpos(strtolower($name), 'escada') !== false) {
+            return "<strong>Escada {$custom_modelo} Personalizada</strong><br><span style='font-size:0.85em; color:#666;'>{$custom_desc}</span>";
+        }
+    }
+    return $name;
+}
