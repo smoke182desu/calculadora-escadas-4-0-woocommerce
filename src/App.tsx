@@ -1215,6 +1215,7 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
         method: 'POST',
         mode: 'cors',
         credentials: 'omit',
+        keepalive: true,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nome: leadData.nome,
@@ -1226,6 +1227,8 @@ const StepOrcamento = ({ stairType, price, leadData, savedDims, savedConfig, onB
           valor: price,
         }),
       });
+      // Pequeno delay para garantir que o webhook do lado do servidor termine
+      await new Promise(r => setTimeout(r, 600));
     } catch (err) {
       console.warn('[CDS Lead] Falha ao enviar lead no checkout:', err);
     }
