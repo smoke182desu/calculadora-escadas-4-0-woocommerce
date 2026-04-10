@@ -1,5 +1,6 @@
 import React from 'react';
 import { SpiralStair } from '../types';
+import { getStepsPerTurn } from '../utils/stepsPerTurn';
 
 interface SpiralPizzaVisualizerProps {
   stair: SpiralStair;
@@ -21,7 +22,7 @@ export const SpiralPizzaVisualizer: React.FC<SpiralPizzaVisualizerProps> = ({
 
   const allSteps = stair.quadrants.flatMap(q => q.steps);
   const diameter = Math.max(1100, D);
-  const stepsPerTurn = Math.max(12, Math.ceil(diameter / 100 / 4) * 4); 
+  const stepsPerTurn = getStepsPerTurn(diameter); 
   const center = 100;
   const maxRadius = 90;
   

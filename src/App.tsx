@@ -111,6 +111,7 @@ import { SpiralStair } from './types';
 import { Spiral2DVisualizer } from './components/Spiral2DVisualizer';
 import { SpiralPizzaVisualizer } from './components/SpiralPizzaVisualizer';
 import { LandingQuadrantSelector } from './components/LandingQuadrantSelector';
+import { getStepsPerTurn } from './utils/stepsPerTurn';
 
 // --- Core Logic & Calculations ---
 
@@ -236,7 +237,7 @@ function getSpiralGradient(type: 'height' | 'diameter', fixedValue: number, topS
     const D = type === 'diameter' ? val : fixedValue;
     
     const diameter = Math.max(1100, D);
-    const stepsPerTurn = Math.max(12, Math.ceil(diameter / 100 / 4) * 4);
+    const stepsPerTurn = getStepsPerTurn(diameter);
     const idealStepHeight = 180;
     const totalSteps = Math.round(H / idealStepHeight);
     const h = H / totalSteps;
@@ -1007,7 +1008,7 @@ function calcWeightLShape(H: number, L1: number, L2: number, W: number, treads: 
 function calcWeightSpiral(H: number, D: number, nSteps: number, tubeD_in: number): number {
   const R = D / 2;
   const tubeR = (tubeD_in * 25.4) / 2;
-  const stepsPerTurn = Math.max(12, Math.ceil(D / 100 / 4) * 4);
+  const stepsPerTurn = getStepsPerTurn(D);
   const stepAreaPerStep = Math.PI * (R * R - tubeR * tubeR) / stepsPerTurn / 1_000_000;
   const stepWeight = nSteps * stepAreaPerStep * PESO_CHAPA11;
   const centralColWeight = (H / 1000 + 0.5) * 4.5;
@@ -2227,7 +2228,7 @@ const Spiral3DVisualizer = ({ steps, h, H, D, topStepFlush, stair, tubeD, landin
   const totalSteps = stair.quadrants.reduce((acc: number, q: any) => acc + q.steps.length, 0);
   const totalH = H;
   
-  const stepsPerTurn = Math.max(12, Math.ceil(D / 100 / 4) * 4);
+  const stepsPerTurn = getStepsPerTurn(D);
   const angleStep = (360 / stepsPerTurn) * (Math.PI / 180);
 
   // Calculate landing rotation to match 2D SVG
@@ -2885,7 +2886,7 @@ const SpiralCalc = ({ onBack, onNext }: any) => {
   const numTreads = steps;
   const config = { steps, treads: numTreads, h, p, comfort: getSpiralComfort(h, D), blondel: 2 * h + p, topStepFlush };
 
-  const stepsPerTurn = Math.max(12, Math.ceil(D / 100 / 4) * 4);
+  const stepsPerTurn = getStepsPerTurn(D);
   const landingSteps = stepsPerTurn / 4; // 90 degrees landing
 
   let isValidConnection = false;

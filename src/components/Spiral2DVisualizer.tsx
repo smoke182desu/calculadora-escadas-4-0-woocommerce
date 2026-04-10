@@ -1,5 +1,6 @@
 import React from 'react';
 import { SpiralStair } from '../types';
+import { getStepsPerTurn } from '../utils/stepsPerTurn';
 
 interface Spiral2DVisualizerProps {
   stair: SpiralStair;
@@ -21,7 +22,7 @@ export const Spiral2DVisualizer: React.FC<Spiral2DVisualizerProps> = ({
   interactive = false,
 }) => {
   const diameter = Math.max(1100, D); // Default D if not provided
-  const stepsPerTurn = Math.max(12, Math.ceil(diameter / 100 / 4) * 4);
+  const stepsPerTurn = getStepsPerTurn(diameter);
   const allSteps = stair.quadrants.flatMap(q => q.steps);
   
   const center = 100;

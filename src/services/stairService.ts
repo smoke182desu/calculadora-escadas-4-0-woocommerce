@@ -1,4 +1,5 @@
 import { SpiralStair, SpiralQuadrant } from '../types';
+import { getStepsPerTurn } from '../utils/stepsPerTurn';
 
 export const generateSpiralStair = (
   H: number,
@@ -11,8 +12,8 @@ export const generateSpiralStair = (
   // 1. Enforce minimum diameter
   const diameter = Math.max(1100, D);
   
-  // 2. Calculate steps per turn based on diameter, ensure it's a multiple of 4
-  const stepsPerTurn = Math.max(12, Math.ceil(diameter / 100 / 4) * 4);
+  // 2. Calculate steps per turn based on corrected diameter rules (piso real >= 200mm)
+  const stepsPerTurn = getStepsPerTurn(diameter);
   const stepsPerQuadrant = stepsPerTurn / 4;
   
   // 3. Calculate total steps based on height for comfort (approx 180mm per step)
